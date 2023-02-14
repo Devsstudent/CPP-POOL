@@ -1,11 +1,9 @@
-#include <iostream.h>
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
-void	main(void)
-
+int	main(void)
 {
 	string		input;
-	PhoneBook	PhoneBoook;
+	PhoneBook	phone_book;
 
 	cout << "Welcome to my PhoneBook program :)" << endl;
 	cout << "Enter ADD to add some contact to your personal PhoneBook" << endl;
@@ -15,7 +13,7 @@ void	main(void)
 	while (input != "EXIT")
 	{
 		//handle_input(input, PhoneBook);
-		PhoneBook.handle_input(input);
+		phone_book.handle_input(input);
 		cin >> input;
 	}
 }
