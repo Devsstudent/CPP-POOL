@@ -1,20 +1,20 @@
 #include "PhoneBook.hpp"
 
-static void ask_input(string output, string &str)
+static void ask_input(std::string output, std::string &str)
 {
-	cout << output;
-	getline(cin, str);
-	while (str.size() == 0)
+	std::cout << output;
+	getline(std::cin, str);
+	while (!str.c_str() || str.size() == 0)
 	{
-		getline(cin, str);
+		getline(std::cin, str);
 		if (str.size() == 0)
-			cout << output;
+			std::cout << output;
 	}
 }
 
-static bool	check_number(string &str)
+static bool	check_number(std::string &str)
 {
-	for (string::iterator it=str.begin(); it!=str.end(); ++it)
+	for (std::string::iterator it=str.begin(); it!=str.end(); ++it)
 	{
 		if (!isdigit(*it))
 			return (false);
@@ -22,14 +22,14 @@ static bool	check_number(string &str)
 	return (true);
 }
 
-static void	ask_number(string output, string &str)
+static void	ask_number(std::string output, std::string &str)
 {
-	cout << output;
-	getline(cin, str);
-	while (str.size() == 0 || !check_number(str))
+	std::cout << output;
+	getline(std::cin, str);
+	while (!str.c_str() || str.size() == 0 || !check_number(str))
 	{
-		cout << output;
-		getline(cin, str);
+		std::cout << output;
+		getline(std::cin, str);
 	}
 }
 
@@ -53,8 +53,8 @@ static void add(Contact phone_book[8])
 {
 	int			i;
 	static int	j;
-	string		str;
-	string		&ref_str = str;
+	std::string		str;
+	std::string		&ref_str = str;
 
 	i = get_index_phonebook(phone_book);
 	if (j != 0 || i == 8)
@@ -74,7 +74,7 @@ static void add(Contact phone_book[8])
 	phone_book[i].darkest_secret = str;
 }
 
-static void	output_name(string str)
+static void	output_name(std::string str)
 {
 	size_t	size;
 	int		z;
@@ -88,58 +88,72 @@ static void	output_name(string str)
 	}
 	else
 	{
-		while (z < 10 - size)
+		while (z < (int) (10 - size))
 		{
-			cout << " ";
+			std::cout << " ";
 			z++;
 		}
 	}
-	cout << str;
-	cout << "|";
+	std::cout << str;
+	std::cout << "|";
 }
 
 static void	display_info(Contact &contact)
 {
-	cout << "First Name : " << contact.first_name << endl;
-	cout << "Last Name : " << contact.last_name << endl;
-	cout << "Nickname : " << contact.nickname << endl;
-	cout << "Number : " << contact.phone_number << endl;
-	cout << "Darkest secrets : " << contact.darkest_secret << endl;
-	cout << endl;
+	std::cout << "First Name : " << contact.first_name << std::endl;
+	std::cout << "Last Name : " << contact.last_name << std::endl;
+	std::cout << "Nickname : " << contact.nickname << std::endl;
+	std::cout << "Number : " << contact.phone_number << std::endl;
+	std::cout << "Darkest secrets : " << contact.darkest_secret << std::endl;
+	std::cout << std::endl;
 }
 
-void	search(Contact phone_book[8])
+static void	search(Contact phone_book[8])
 {
-	int		index;
 	int		j;
 	int		i;
-	string	str;
-	string	&ref_str = str;
+	std::string	str;
 
 	i = 1;
-	str = "-1";
+	str = "";
 	j = get_index_phonebook(phone_book);
 	while (i <= j)
 	{
-		cout << "|    ";
-		cout << i << "     ";
-		cout << "|";
+		std::cout << "|         ";
+		std::cout << i;
+		std::cout << "|";
 		output_name(phone_book[i - 1].first_name);
 		output_name(phone_book[i - 1].last_name);
 		output_name(phone_book[i - 1].nickname);
-		cout << endl; 
+		std::cout << std::endl; 
 		i++;
 	}
-	cout << stoi(str) << " HERE :" << j << endl;
-	while (stoi(str) <= 0 && stoi(str) <= i - 1)
-			ask_number("Wich one do you want to select ? ", ref_str);
-	cout << endl;
-	cout << phone_book[0].first_name << endl;
-	if (stoi(str) > 0)
+	if (j == 0)
+		return ;
+	std::cout << "Wich one do you want to select ? ";
+	getline(std::cin, str);
+	if (std::cin.eof())
+		std::cin.clear();
+	getline(std::cin, str);
+	if (std::cin.eof())
+		std::cin.clear();
+	while (j == 0 || atoi(str.c_str()) <= 0
+			|| atoi(str.c_str()) < i - 1 || atoi(str.c_str()) > j)
+	{
+		std::cout << "Wich one do you want to select ? ";
+		getline(std::cin, str);
+		std::cin.clear();
+		if (std::cin.eof())
+		{
+			continue ;
+		}
+	}
+	std::cout << std::endl;
+	if (atoi(str.c_str()) > 0)
 		display_info(phone_book[0]);
 }
 
-void	PhoneBook::handle_input(string input)
+void	PhoneBook::handle_input(std::string input)
 {
 	if (input == "ADD")
 		add(this->phone_book);
