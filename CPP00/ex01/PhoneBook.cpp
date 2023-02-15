@@ -3,10 +3,34 @@
 static void ask_input(string output, string &str)
 {
 	cout << output;
-	cin >> str;
+	getline(cin, str);
 	while (str.size() == 0)
-		cin >> str;
-	cout << endl;
+	{
+		getline(cin, str);
+		if (str.size() == 0)
+			cout << output;
+	}
+}
+
+static bool	check_number(string &str)
+{
+	for (string::iterator it=str.begin(); it!=str.end(); ++it)
+	{
+		if (!isdigit(*it))
+			return (false);
+	}
+	return (true);
+}
+
+static void	ask_number(string output, string &str)
+{
+	cout << output;
+	getline(cin, str);
+	while (str.size() == 0 || !check_number(str))
+	{
+		cout << output;
+		getline(cin, str);
+	}
 }
 
 //Function to loop to the last contact checking if it's more than the eighth
@@ -25,7 +49,7 @@ static int	get_index_phonebook(Contact phone_book[8])
 	return (i);
 }
 
-void add(Contact phone_book[8])
+static void add(Contact phone_book[8])
 {
 	int			i;
 	static int	j;
@@ -44,7 +68,7 @@ void add(Contact phone_book[8])
 	phone_book[i].last_name = str;
 	ask_input("NickName: ", ref_str);
 	phone_book[i].nickname = str;
-	ask_input("PhoneNumber: ", ref_str);
+	ask_number("PhoneNumber: ", ref_str);
 	phone_book[i].phone_number = str;
 	ask_input("Darkest Secret: ", ref_str);
 	phone_book[i].darkest_secret = str;
@@ -59,56 +83,66 @@ static void	output_name(string str)
 	size = str.size();
 	if (size >= 10)
 	{
+		str = str.substr(0, 10);
 		str[9] = '.';
-		cout << str;
 	}
 	else
 	{
-		cout << str;
 		while (z < 10 - size)
+		{
 			cout << " ";
+			z++;
+		}
 	}
+	cout << str;
 	cout << "|";
 }
 
-static void first_last_line(void)
+static void	display_info(Contact &contact)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 45)
-		cout << "_";
+	cout << "First Name : " << contact.first_name << endl;
+	cout << "Last Name : " << contact.last_name << endl;
+	cout << "Nickname : " << contact.nickname << endl;
+	cout << "Number : " << contact.phone_number << endl;
+	cout << "Darkest secrets : " << contact.darkest_secret << endl;
 	cout << endl;
 }
 
-
-static void	search(Contact phone_book[8])
+void	search(Contact phone_book[8])
 {
 	int		index;
 	int		j;
 	int		i;
+	string	str;
+	string	&ref_str = str;
 
-	i = 0;
+	i = 1;
+	str = "-1";
 	j = get_index_phonebook(phone_book);
-	first_last_line();
-	while (i < j)
+	while (i <= j)
 	{
 		cout << "|    ";
 		cout << i << "     ";
 		cout << "|";
-		output_name(phone_book[i].first_name);
-		output_name(phone_book[i].last_name);
-		output_name(phone_book[i].last_name);
+		output_name(phone_book[i - 1].first_name);
+		output_name(phone_book[i - 1].last_name);
+		output_name(phone_book[i - 1].nickname);
 		cout << endl; 
 		i++;
 	}
-	first_last_line();
+	cout << stoi(str) << " HERE :" << j << endl;
+	while (stoi(str) <= 0 && stoi(str) <= i - 1)
+			ask_number("Wich one do you want to select ? ", ref_str);
+	cout << endl;
+	cout << phone_book[0].first_name << endl;
+	if (stoi(str) > 0)
+		display_info(phone_book[0]);
 }
 
 void	PhoneBook::handle_input(string input)
 {
 	if (input == "ADD")
-		::add(this->phone_book);
+		add(this->phone_book);
 	else if (input == "SEARCH")
-		::search(this->phone_book);
+		search(this->phone_book);
 }

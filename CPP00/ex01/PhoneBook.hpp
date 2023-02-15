@@ -1,14 +1,16 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 #include <iostream>
+#include <ctype.h>
 
 using namespace std;
 
 class	Contact {
+
 	public:
-	Contact() : first_name(NULL), last_name(NULL), nickname(NULL), phone_number(NULL), darkest_secret(NULL) {}
-		Contact(const Contact &a);
-		~Contact();
+		Contact() { cout << "Contact Constructed" << endl;}
+		Contact(const Contact &a){};
+		~Contact(){ cout << "Contact destroyed" << endl;};
 		Contact & operator = (const Contact &a);
 		string	first_name;
 		string	last_name;
@@ -19,12 +21,11 @@ class	Contact {
 
 class	PhoneBook {
 	public:
-		PhoneBook();
-		PhoneBook(const PhoneBook &a);
-		~PhoneBook();
+		PhoneBook(){ cout << "PhoneBook created" << endl;}
+		PhoneBook(const PhoneBook &a){};
+		~PhoneBook(){ cout << "PhoneBook destroyed";}
 		PhoneBook & operator = (const PhoneBook &a);
 		void	handle_input(string input);
-	void add(void);
 	private:
 		Contact phone_book[8];
 };
