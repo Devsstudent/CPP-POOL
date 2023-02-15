@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 
-
 static void ask_input(string output, string &str)
 {
 	cout << output;
@@ -33,22 +32,22 @@ void add(Contact phone_book[8])
 	string		str;
 	string		&ref_str = str;
 
-	i = get_index_phonebook(this.phone_book);
+	i = get_index_phonebook(phone_book);
 	if (j != 0 || i == 8)
 	{
 		j += 1;
 		i = (j % 8) - 1;
 	}
 	ask_input("First Name: ", ref_str);
-	this.phone_book[i].first_name = str;
+	phone_book[i].first_name = str;
 	ask_input("Last Name: ", ref_str);
-	this.phone_book[i].last_name = str;
+	phone_book[i].last_name = str;
 	ask_input("NickName: ", ref_str);
-	this.phone_book[i].nick_name = str;
+	phone_book[i].nickname = str;
 	ask_input("PhoneNumber: ", ref_str);
-	this.phone_book[i].phone_number = str;
+	phone_book[i].phone_number = str;
 	ask_input("Darkest Secret: ", ref_str);
-	this.phone_book[i].darkest_secret = str;
+	phone_book[i].darkest_secret = str;
 }
 
 static void	output_name(string str)
@@ -83,33 +82,33 @@ static void first_last_line(void)
 }
 
 
-static void	search(void)
+static void	search(Contact phone_book[8])
 {
 	int		index;
 	int		j;
 	int		i;
 
 	i = 0;
-	j = get_index_phonebook(this.phone_book);
+	j = get_index_phonebook(phone_book);
 	first_last_line();
 	while (i < j)
 	{
 		cout << "|    ";
 		cout << i << "     ";
 		cout << "|";
-		output_name(this.phone_book[i].first_name);
-		output_name(this.phone_book[i].last_name);
-		output_name(this.phone_book[i].last_name);
+		output_name(phone_book[i].first_name);
+		output_name(phone_book[i].last_name);
+		output_name(phone_book[i].last_name);
 		cout << endl; 
 		i++;
 	}
 	first_last_line();
 }
 
-void	handle_input(string input)
+void	PhoneBook::handle_input(string input)
 {
 	if (input == "ADD")
-		add(this->phone_book);
+		::add(this->phone_book);
 	else if (input == "SEARCH")
-		search();
+		::search(this->phone_book);
 }
