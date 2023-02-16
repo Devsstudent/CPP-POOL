@@ -4,6 +4,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+void	display_menu(void);
+
 class	Contact {
 
 	public:

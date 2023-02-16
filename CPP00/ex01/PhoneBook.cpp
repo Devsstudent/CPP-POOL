@@ -2,11 +2,13 @@
 
 static void ask_input(std::string output, std::string &str)
 {
+	bool	input;
+
 	std::cout << output;
-	getline(std::cin, str);
-	while (!str.c_str() || str.size() == 0)
+	input = getline(std::cin, str);
+	while (!input || str.size() == 0)
 	{
-		getline(std::cin, str);
+		input = getline(std::cin, str);
 		if (str.size() == 0)
 			std::cout << output;
 	}
@@ -24,12 +26,14 @@ static bool	check_number(std::string &str)
 
 static void	ask_number(std::string output, std::string &str)
 {
+	bool	input;
+
 	std::cout << output;
-	getline(std::cin, str);
-	while (!str.c_str() || str.size() == 0 || !check_number(str))
+	input = getline(std::cin, str);
+	while (!input || str.size() == 0 || !check_number(str))
 	{
 		std::cout << output;
-		getline(std::cin, str);
+		input = getline(std::cin, str);
 	}
 }
 
@@ -110,9 +114,10 @@ static void	display_info(Contact &contact)
 
 static void	search(Contact phone_book[8])
 {
-	int		j;
-	int		i;
+	int			j;
+	int			i;
 	std::string	str;
+	bool		input;
 
 	i = 1;
 	str = "";
@@ -131,21 +136,18 @@ static void	search(Contact phone_book[8])
 	if (j == 0)
 		return ;
 	std::cout << "Wich one do you want to select ? ";
-	getline(std::cin, str);
-	if (std::cin.eof())
-		std::cin.clear();
-	getline(std::cin, str);
-	if (std::cin.eof())
-		std::cin.clear();
-	while (j == 0 || atoi(str.c_str()) <= 0
+	input = getline(std::cin, str);
+	input = getline(std::cin, str);
+	while (!input || j == 0 || atoi(str.c_str()) <= 0
 			|| atoi(str.c_str()) < i - 1 || atoi(str.c_str()) > j)
 	{
 		std::cout << "Wich one do you want to select ? ";
-		getline(std::cin, str);
-		std::cin.clear();
-		if (std::cin.eof())
+		input = getline(std::cin, str);
+		if (!input)
 		{
-			continue ;
+			std::cin.clear();
+			std::cout << "EOF" << std::endl;
+			std::cin >> str;
 		}
 	}
 	std::cout << std::endl;
@@ -156,7 +158,14 @@ static void	search(Contact phone_book[8])
 void	PhoneBook::handle_input(std::string input)
 {
 	if (input == "ADD")
+	{
 		add(this->phone_book);
+		display_menu();
+	}
 	else if (input == "SEARCH")
+	{
 		search(this->phone_book);
+		display_menu();
+	}
+	
 }
