@@ -1,8 +1,6 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
-#include <iostream>
-#include <ctype.h>
-#include <stdlib.h>
+# include "global_header.h"
 
 void	display_menu(void);
 

@@ -1,4 +1,4 @@
-#include "PhoneBook.hpp"
+#include "global_header.h"
 
 static void ask_input(std::string output, std::string &str)
 {
@@ -139,7 +139,7 @@ static void	search(Contact phone_book[8])
 	input = getline(std::cin, str);
 	input = getline(std::cin, str);
 	while (!input || j == 0 || atoi(str.c_str()) <= 0
-			|| atoi(str.c_str()) < i - 1 || atoi(str.c_str()) > j)
+			|| atoi(str.c_str()) > i || atoi(str.c_str()) > j)
 	{
 		std::cout << "Wich one do you want to select ? ";
 		input = getline(std::cin, str);
@@ -152,7 +152,7 @@ static void	search(Contact phone_book[8])
 	}
 	std::cout << std::endl;
 	if (atoi(str.c_str()) > 0)
-		display_info(phone_book[0]);
+		display_info(phone_book[atoi(str.c_str()) - 1]);
 }
 
 void	PhoneBook::handle_input(std::string input)
