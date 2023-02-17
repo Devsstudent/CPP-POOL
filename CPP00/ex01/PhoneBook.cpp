@@ -1,5 +1,13 @@
 #include "global_header.h"
 
+static void	reset_stdin(std::string &str)
+{
+	str = "";
+	std::cin.clear();
+	clearerr(stdin);
+	std::cout << std::endl;
+}
+
 static void ask_input(std::string output, std::string &str)
 {
 	bool	input;
@@ -9,6 +17,8 @@ static void ask_input(std::string output, std::string &str)
 	while (!input || str.size() == 0)
 	{
 		input = getline(std::cin, str);
+		if (!input)
+			reset_stdin(str);
 		if (str.size() == 0)
 			std::cout << output;
 	}
@@ -30,10 +40,14 @@ static void	ask_number(std::string output, std::string &str)
 
 	std::cout << output;
 	input = getline(std::cin, str);
+	if (!input)
+		reset_stdin(str);
 	while (!input || str.size() == 0 || !check_number(str))
 	{
 		std::cout << output;
 		input = getline(std::cin, str);
+		if (!input)
+			reset_stdin(str);
 	}
 }
 
@@ -137,18 +151,18 @@ static void	search(Contact phone_book[8])
 		return ;
 	std::cout << "Wich one do you want to select ? ";
 	input = getline(std::cin, str);
+	if (!input)
+		reset_stdin(str);
 	input = getline(std::cin, str);
+	if (!input)
+		reset_stdin(str);
 	while (!input || j == 0 || atoi(str.c_str()) <= 0
 			|| atoi(str.c_str()) > i || atoi(str.c_str()) > j)
 	{
 		std::cout << "Wich one do you want to select ? ";
 		input = getline(std::cin, str);
 		if (!input)
-		{
-			std::cin.clear();
-			std::cout << "EOF" << std::endl;
-			std::cin >> str;
-		}
+			reset_stdin(str);
 	}
 	std::cout << std::endl;
 	if (atoi(str.c_str()) > 0)
@@ -167,5 +181,4 @@ void	PhoneBook::handle_input(std::string input)
 		search(this->phone_book);
 		display_menu();
 	}
-	
 }

@@ -1,7 +1,7 @@
 CFLAGS = -g -Wall -MMD -Wextra -Werror -std=c++98
 CC = c++
 OBJ = main.o PhoneBook.o
-NAME = annulaires
+NAME = annuaire
 DD = $(OBJ:.o=.d)
 
 all : $(NAME)

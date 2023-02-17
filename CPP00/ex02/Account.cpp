@@ -10,6 +10,7 @@ int Account::_totalNbWithdrawals=0;
 Account::Account( int initial_deposit )
 {
 	this->_amount = initial_deposit;
+	this->_accountIndex = this->_nbAccounts;
 	(this->_nbAccounts)++;
 	(this->_totalAmount) += this->_amount;
 	_displayTimestamp();
@@ -23,7 +24,7 @@ Account::~Account( void )
 {
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "amount:" << this->_totalAmount << ";";
+	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "closed";
 	std::cout << std::endl;
 }
@@ -54,7 +55,7 @@ void	Account::displayAccountsInfos( void )
 	std::cout << "accounts:" << getNbAccounts() << ';';
 	std::cout << "total:" << getTotalAmount() << ';';
 	std::cout << "deposits:" << getNbDeposits() << ';';
-	std::cout << "withdrawls:" << getNbWithdrawals();
+	std::cout << "withdrawals:" << getNbWithdrawals();
 	std::cout << std::endl;
 }
 
@@ -72,6 +73,7 @@ void	Account::makeDeposit( int deposit )
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "p_amount:" << this->_amount << ";";
 	this->_amount += deposit;
+	(this->_nbDeposits)++;
 	std::cout << "deposits:" << deposit << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "nb_deposits:" << this->_nbDeposits;
@@ -89,10 +91,11 @@ bool	Account::makeWithdrawal ( int withdrawal )
 	{
 		std::cout << "withdrawal:" << withdrawal << ";";
 		this->_amount -= withdrawal;
+		(this->_nbWithdrawals)++;
 		std::cout << "amount:" << this->_amount << ";";
 		std::cout << "nb_withdrawals:" << this->_nbWithdrawals;
 		std::cout << std::endl;
-		this->_totalNbWithdrawals += 1;
+		(this->_totalNbWithdrawals)++;
 		this->_totalAmount -= withdrawal;
 		return (true);
 	}
@@ -110,6 +113,6 @@ void	Account::displayStatus( void ) const
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << _nbDeposits << ";";
-	std::cout << "withdrawls:" << this->_nbWithdrawals;
+	std::cout << "withdrawals:" << this->_nbWithdrawals;
 	std::cout << std::endl;
 }

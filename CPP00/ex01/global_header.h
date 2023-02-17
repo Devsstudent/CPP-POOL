@@ -4,6 +4,8 @@
 # include <ctype.h>
 # include <stdlib.h>
 # include <limits>
+# include <errno.h>
+# include <stdio.h>
 # include "PhoneBook.hpp"
 
 std::string	get_line(void);
