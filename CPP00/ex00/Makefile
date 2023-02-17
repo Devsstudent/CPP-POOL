@@ -7,7 +7,7 @@ DD = megaphone.d
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CGLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o:%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

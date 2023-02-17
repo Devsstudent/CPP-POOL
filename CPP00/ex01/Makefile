@@ -7,7 +7,7 @@ DD = $(OBJ:.o=.d)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CGLAGS) $(OBJ) -I ./ -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -I ./ -o $(NAME)
 
 %.o:%.cpp
 	$(CC) $(CFLAGS) -I ./ -c $< -o $@

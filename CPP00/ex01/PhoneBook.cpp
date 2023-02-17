@@ -1,6 +1,6 @@
 #include "global_header.h"
 
-static void	reset_stdin(std::string &str)
+void	reset_stdin(std::string &str)
 {
 	str = "";
 	std::cin.clear();
@@ -153,9 +153,6 @@ static void	search(Contact phone_book[8])
 	input = getline(std::cin, str);
 	if (!input)
 		reset_stdin(str);
-	input = getline(std::cin, str);
-	if (!input)
-		reset_stdin(str);
 	while (!input || j == 0 || atoi(str.c_str()) <= 0
 			|| atoi(str.c_str()) > i || atoi(str.c_str()) > j)
 	{
@@ -172,13 +169,8 @@ static void	search(Contact phone_book[8])
 void	PhoneBook::handle_input(std::string input)
 {
 	if (input == "ADD")
-	{
 		add(this->phone_book);
-		display_menu();
-	}
 	else if (input == "SEARCH")
-	{
 		search(this->phone_book);
-		display_menu();
-	}
+	display_menu();
 }

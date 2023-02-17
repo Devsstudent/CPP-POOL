@@ -3,6 +3,7 @@
 # include "global_header.h"
 
 void	display_menu(void);
+void	reset_stdin(std::string &str);
 
 class	Contact {
 
