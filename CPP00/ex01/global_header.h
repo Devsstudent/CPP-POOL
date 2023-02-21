@@ -6,9 +6,12 @@
 # include <limits>
 # include <errno.h>
 # include <stdio.h>
+# include <iomanip>
+# include "Contact.hpp"
 # include "PhoneBook.hpp"
 
 std::string	get_line(void);
 void	display_menu(void);
+void	reset_stdin(std::string &str);
 
 #endif

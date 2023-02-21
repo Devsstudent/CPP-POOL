@@ -60,7 +60,7 @@ static int	get_index_phonebook(Contact phone_book[8])
 	i = 0;
 	while (i < 8)
 	{
-		if (!phone_book[i].first_name.size())
+		if (!phone_book[i].get_first_name().size())
 			return (i);
 		i++;
 	}
@@ -81,15 +81,15 @@ static void add(Contact phone_book[8])
 		i = (j % 8) - 1;
 	}
 	ask_input("First Name: ", ref_str);
-	phone_book[i].first_name = str;
+	phone_book[i].set_first_name(str);
 	ask_input("Last Name: ", ref_str);
-	phone_book[i].last_name = str;
+	phone_book[i].set_last_name(str);
 	ask_input("NickName: ", ref_str);
-	phone_book[i].nickname = str;
+	phone_book[i].set_nickname(str);
 	ask_number("PhoneNumber: ", ref_str);
-	phone_book[i].phone_number = str;
+	phone_book[i].set_phone_number(str);
 	ask_input("Darkest Secret: ", ref_str);
-	phone_book[i].darkest_secret = str;
+	phone_book[i].set_darkest_secret(str);
 }
 
 static void	output_name(std::string str)
@@ -104,25 +104,16 @@ static void	output_name(std::string str)
 		str = str.substr(0, 10);
 		str[9] = '.';
 	}
-	else
-	{
-		while (z < (int) (10 - size))
-		{
-			std::cout << " ";
-			z++;
-		}
-	}
-	std::cout << str;
-	std::cout << "|";
+	std::cout << std::setw(10) << str << "|";
 }
 
 static void	display_info(Contact &contact)
 {
-	std::cout << "First Name : " << contact.first_name << std::endl;
-	std::cout << "Last Name : " << contact.last_name << std::endl;
-	std::cout << "Nickname : " << contact.nickname << std::endl;
-	std::cout << "Number : " << contact.phone_number << std::endl;
-	std::cout << "Darkest secrets : " << contact.darkest_secret << std::endl;
+	std::cout << "First Name : " << contact.get_first_name() << std::endl;
+	std::cout << "Last Name : " << contact.get_last_name() << std::endl;
+	std::cout << "Nickname : " << contact.get_nickname() << std::endl;
+	std::cout << "Number : " << contact.get_phone_number() << std::endl;
+	std::cout << "Darkest secrets : " << contact.get_darkest_secret() << std::endl;
 	std::cout << std::endl;
 }
 
@@ -138,12 +129,12 @@ static void	search(Contact phone_book[8])
 	j = get_index_phonebook(phone_book);
 	while (i <= j)
 	{
-		std::cout << "|         ";
-		std::cout << i;
 		std::cout << "|";
-		output_name(phone_book[i - 1].first_name);
-		output_name(phone_book[i - 1].last_name);
-		output_name(phone_book[i - 1].nickname);
+		std::cout << std::setw(10) << i;
+		std::cout << "|";
+		output_name(phone_book[i - 1].get_first_name());
+		output_name(phone_book[i - 1].get_last_name());
+		output_name(phone_book[i - 1].get_nickname());
 		std::cout << std::endl; 
 		i++;
 	}

@@ -1,8 +1,7 @@
-#include "gloabl_header.h"
+#include "HumanB.hpp"
 
-HumanB::HumanB(std::string name)
+HumanB::HumanB(std::string name):weapon(NULL), name(name)
 {
-	this->name = name;
 	std::cout << "HumanB " << name <<  " contructed" << std::endl;
 }
 
@@ -16,7 +15,17 @@ std::string	HumanB::get_name(void)
 	return (this->name);
 }
 
-Weapon	HumanB::get_weapon(void)
+Weapon	*HumanB::get_weapon(void)
 {
 	return (this->weapon);
+}
+
+void	HumanB::setWeapon(Weapon &weapon)
+{
+	this->weapon = &weapon;
+}
+
+void	HumanB::attack(void)
+{
+	std::cout << this->get_name() << "attacks with their " << this->get_weapon()->getType() << std::endl;
 }

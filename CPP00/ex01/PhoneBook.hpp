@@ -2,20 +2,6 @@
 # define PHONEBOOK_HPP
 # include "global_header.h"
 
-void	display_menu(void);
-void	reset_stdin(std::string &str);
-
-class	Contact {
-
-	public:
-		Contact() {};
-		~Contact(){};
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	phone_number;
-		std::string	darkest_secret;
-};
 
 class	PhoneBook {
 	public:
@@ -27,4 +13,4 @@ class	PhoneBook {
 		Contact phone_book[8];
 };
 
-#endif 
+#endif

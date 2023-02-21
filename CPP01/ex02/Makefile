@@ -5,10 +5,10 @@ NAME = HI_THIS_IS_BRAIN
 all: $(NAME)
 
 $(NAME) : main.o
-	$(CC) $(FLAGS) main.o -o $(NAME)
+	$(CC) $(CFLAGS) main.o -o $(NAME)
 
 %.o:%.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf main.o main.d
