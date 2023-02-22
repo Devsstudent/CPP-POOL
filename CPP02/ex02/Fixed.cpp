@@ -107,15 +107,14 @@ Fixed& Fixed::operator - (const Fixed& a)
 
 Fixed& Fixed::operator * (const Fixed& a)
 {
-	std::cout << (this->getRawBits() * a.getRawBits()) << std::endl;
-	this->setRawBits(this->getRawBits() * a.getRawBits());
+	this->setRawBits(this->getRawBits() * a.getRawBits() >> fractional);
 	this->toFloat();
 	return (*this);
 }
 
 Fixed& Fixed::operator / (const Fixed& a)
 {
-	this->setRawBits(this->getRawBits() / a.getRawBits());
+	this->setRawBits(this->getRawBits() / a.getRawBits() >> fractional);
 	return (*this);
 }
 
