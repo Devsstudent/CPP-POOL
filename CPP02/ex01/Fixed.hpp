@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 10:20:55 by odessein          #+#    #+#             */
-/*   Updated: 2023/02/21 17:23:57 by odessein         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:06:27 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class	Fixed{
 		Fixed(Fixed &a);
 		Fixed(const int number);
 		Fixed(const float number);
+		Fixed(const Fixed& a);
 		Fixed&	operator = (const Fixed& a);
 		~Fixed();
 		int		getRawBits(void) const;
