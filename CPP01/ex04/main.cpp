@@ -35,12 +35,16 @@ int	main(int ac, char **av)
 		std::cerr << "Please enter as follow : <filename> <s1> <s2>" << std::endl;
 		return (1);
 	}
+	if (!av[2][0])
+	{
+		std::cerr << "Cannot replace all \\0 :)" << std::endl;
+		return (5);
+	}
 	s1 = av[2];
 	s2 = av[3];
 	filename = av[1];
 	std::ifstream	infile;
 	std::ofstream	outfile;
-
 	infile.open(av[1]);
 	if (infile.bad())
 	{
@@ -52,18 +56,15 @@ int	main(int ac, char **av)
 		std::cerr << "Empty file" << std::endl;
 		return (3);
 	}
-// check empty
 	filename.append(".replace");
-	outfile.open(filename);
+	outfile.open(filename.c_str());
 	if (outfile.bad())
 	{
 		std::cerr << "Failed opening " << filename << std::endl;
 		return (3);
 	}
 	while (getline(infile, buff_line))
-	{
 		write_to_file(outfile, buff_line, s2, s1);
-	}
 	infile.close();
 	outfile.close();
 }

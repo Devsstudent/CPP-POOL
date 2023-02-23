@@ -16,6 +16,7 @@ ClapTrap::ClapTrap(const ClapTrap &a)
   hit_point = a.hit_point;
   energy_point = a.energy_point;
   attack_damage = a.attack_damage;
+  std::cout << name << " has been constructed by copy" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -29,12 +30,48 @@ ClapTrap  &ClapTrap::operator = (const ClapTrap &a)
   hit_point = a.hit_point;
   energy_point = a.energy_point;
   attack_damage = a.attack_damage;
+  std::cout << "Copy assignement operator called" << std::endl;
   return (*this);
+}
+
+std::string ClapTrap::getName(void)
+{
+	return (name);
 }
 
 int	ClapTrap::getAttackDamage(void)
 {
 	return (attack_damage);
+}
+
+int	ClapTrap::getEnergyPoint(void)
+{
+	return (energy_point);
+}
+
+int	ClapTrap::getHitPoint(void)
+{
+	return (hit_point);
+}
+
+void	ClapTrap::setName(std::string newName)
+{
+	name = newName;
+}
+
+void	ClapTrap::setAttackDamage(int value)
+{
+	attack_damage = value;
+}
+
+void	ClapTrap::setEnergyPoint(int value)
+{
+	energy_point = value;
+}
+
+void	ClapTrap::setHitPoint(int value)
+{
+	hit_point = value;
 }
 
 void  ClapTrap::attack(const std::string &target)

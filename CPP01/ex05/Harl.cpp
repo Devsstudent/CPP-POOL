@@ -38,7 +38,7 @@ void	Harl::complain(std::string level)
 	while (i < 4)
 	{
 		if (level_str[i].compare(level) == 0)
-			(this->*func[i])();
+			return ((this->*func[i])());
 		i++;
 	}
 	std::cout << "Not a valid level" << std::endl;

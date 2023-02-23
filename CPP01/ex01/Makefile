@@ -16,8 +16,7 @@ object:
 	mkdir -p obj/
 
 clean:
-	rm -rf *.o
-	rm -rf *.d
+	rm -rf obj/
 
 fclean: clean
 	rm -rf $(NAME)
