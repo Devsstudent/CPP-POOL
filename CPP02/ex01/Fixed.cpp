@@ -22,7 +22,7 @@ Fixed::~Fixed()
 	std::cout << "Desctructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &a)
+Fixed::Fixed(const Fixed &a)
 {
 	fixed_point_int = a.getRawBits();
 	std::cout << "Copy Constructor called" << std::endl;

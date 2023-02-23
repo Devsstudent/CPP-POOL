@@ -22,10 +22,9 @@ class	Fixed{
 		static const int fractional;
 	public:
 		Fixed();
-		Fixed(Fixed &a);
+		Fixed(const Fixed& a);
 		Fixed(const int number);
 		Fixed(const float number);
-		Fixed(const Fixed& a);
 		Fixed&	operator = (const Fixed& a);
 		~Fixed();
 		int		getRawBits(void) const;
@@ -39,10 +38,10 @@ class	Fixed{
 		bool	operator <= (const Fixed& a) const;
 		bool	operator == (const Fixed& a) const;
 		bool	operator != (const Fixed& a) const;
-		Fixed&	operator + (const Fixed& a);
-		Fixed&	operator - (const Fixed& a);
-		Fixed&	operator * (const Fixed& a);
-		Fixed&	operator / (const Fixed& a);
+		Fixed	operator + (const Fixed& a);
+		Fixed	operator - (const Fixed& a);
+		Fixed	operator * (const Fixed& a);
+		Fixed	operator / (const Fixed& a);
 		Fixed&	operator ++ (void);
 		Fixed	operator ++ (int);
 		Fixed&	operator -- (void);
