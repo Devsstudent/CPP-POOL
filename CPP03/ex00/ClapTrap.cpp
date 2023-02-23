@@ -2,12 +2,12 @@
 
 ClapTrap::ClapTrap(void): name("Anonymous"), hit_point(10), energy_point(10), attack_damage(10)
 {
-  std::cout << name << " has been constructed" << std::endl;
+  std::cout << "ClapTrap " << name << " has been constructed" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name): name(name) , hit_point(10), energy_point(10), attack_damage(10)
 {
-  std::cout << name << " has been constructed" << std::endl;
+  std::cout << "ClapTrap " << name << " has been constructed" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &a)
@@ -16,12 +16,12 @@ ClapTrap::ClapTrap(const ClapTrap &a)
   hit_point = a.hit_point;
   energy_point = a.energy_point;
   attack_damage = a.attack_damage;
-  std::cout << name << " has been constructed by copy" << std::endl;
+  std::cout << "ClapTrap " << name << " has been constructed by copy" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-  std::cout << name << " has been destroyed" << std::endl;
+  std::cout << "ClapTrap " << name << " has been destroyed" << std::endl;
 }
 
 ClapTrap  &ClapTrap::operator = (const ClapTrap &a)
@@ -34,22 +34,22 @@ ClapTrap  &ClapTrap::operator = (const ClapTrap &a)
   return (*this);
 }
 
-std::string ClapTrap::getName(void)
+std::string ClapTrap::getName(void) const
 {
 	return (name);
 }
 
-int	ClapTrap::getAttackDamage(void)
+int	ClapTrap::getAttackDamage(void) const
 {
 	return (attack_damage);
 }
 
-int	ClapTrap::getEnergyPoint(void)
+int	ClapTrap::getEnergyPoint(void) const
 {
 	return (energy_point);
 }
 
-int	ClapTrap::getHitPoint(void)
+int	ClapTrap::getHitPoint(void) const
 {
 	return (hit_point);
 }
@@ -78,7 +78,7 @@ void  ClapTrap::attack(const std::string &target)
 {
  	if (hit_point <= 0)
 	{
-		std::cout << name << " is dead, not hit_points left .." << std::endl;
+		std::cout << "ClapTrap " << name << " is dead, no hit_points left .." << std::endl;
 		return ;
 	}
   else if (energy_point <= 0)

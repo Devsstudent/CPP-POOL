@@ -1,17 +1,15 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void)
+ScavTrap::ScavTrap(void): ClapTrap()
 {
-	setName("Anonymous");
 	setHitPoint(100);
 	setEnergyPoint(50);
 	setAttackDamage(20);
 	std::cout << "ScavTrap " << getName() << " has been Constructed" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
-	setName(name);
 	setHitPoint(100);
 	setEnergyPoint(50);
 	setAttackDamage(20);
@@ -35,6 +33,27 @@ ScavTrap	&ScavTrap::operator = (const ScavTrap &a)
 	setAttackDamage(a.getAttackDamage());
 	std::cout << "Copy operator = called" << std::endl;
 	return (*this);
+}
+
+ScavTrap::~ScavTrap(void)
+{
+	std::cout << "ScavTrap " << getName() << " has been destroyed" << std::endl;
+}
+
+void	ScavTrap::attack(const std::string &target)
+{
+	if (getHitPoint() <= 0)
+	{
+		(std::cout << "ClavTrap " << getName() << " is dead, no hit_points left .." << std::endl);
+		return ;
+	}
+	else if (getEnergyPoint() <= 0)
+	{
+		std::cout << "ClavTrap " << getName() << " has no mana" << std::endl;
+		return ;
+	}
+	setEnergyPoint(getEnergyPoint() - 1);
+	std::cout << "ClavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage !" << std::endl;
 }
 
 void	ScavTrap::guardGate(void)
