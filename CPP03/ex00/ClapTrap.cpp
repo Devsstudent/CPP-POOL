@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap(void): name("Anonymous"), hit_point(10), energy_point(10), attack_damage(10)
 {
-  std::cout << " has been constructed" << std::endl;
+  std::cout << name << " has been constructed" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name): name(name) , hit_point(10), energy_point(10), attack_damage(10)
@@ -32,22 +32,30 @@ ClapTrap  &ClapTrap::operator = (const ClapTrap &a)
   return (*this);
 }
 
+int	ClapTrap::getAttackDamage(void)
+{
+	return (attack_damage);
+}
+
 void  ClapTrap::attack(const std::string &target)
 {
-  if (energy_point <= 0)
+ 	if (hit_point <= 0)
+	{
+		std::cout << name << " is dead, not hit_points left .." << std::endl;
+		return ;
+	}
+  else if (energy_point <= 0)
   {
     std::cout << name << " cannot attack, no mana" << std::endl;
     return ;
   }
   energy_point--;
-  std::cout << "ClapTrap " << name << " attacks" << target.name;
-  target.takeDamage(attack_damage);
+  std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage !" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
- ", causing " << amount << " points of damage !" << std::endl;
-  target.hit_point -= amount;
+  hit_point -= amount;
 }
 
 void  ClapTrap::beRepaired(unsigned int amount)
@@ -57,7 +65,12 @@ void  ClapTrap::beRepaired(unsigned int amount)
     std::cout << name << " cannot attack, no mana" << std::endl;
     return ;
   }
+ 	else if (hit_point <= 0)
+	{
+		std::cout << name << " is dead, not hit_points left .." << std::endl;
+		return ;
+	}
   energy_point--;
   std::cout << "ClapTrap " << name << " repaired " << amount << " hit_points" << std::endl;
-  hit_points += amount;
+  hit_point += amount;
 }
