@@ -7,17 +7,17 @@ HumanB::HumanB(std::string name):weapon(NULL), name(name)
 
 HumanB::~HumanB()
 {
-	std::cout << "HumanB " << this->name << " destroyed" << std::endl;
+	std::cout << "HumanB " << name << " destroyed" << std::endl;
 }
 
 std::string	HumanB::get_name(void)
 {
-	return (this->name);
+	return (name);
 }
 
 Weapon	*HumanB::get_weapon(void)
 {
-	return (this->weapon);
+	return (weapon);
 }
 
 void	HumanB::setWeapon(Weapon &weapon)
@@ -27,5 +27,5 @@ void	HumanB::setWeapon(Weapon &weapon)
 
 void	HumanB::attack(void)
 {
-	std::cout << this->get_name() << "attacks with their " << this->get_weapon()->getType() << std::endl;
+	std::cout << get_name() << "attacks with their " << get_weapon()->getType() << std::endl;
 }

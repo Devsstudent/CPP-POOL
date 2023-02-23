@@ -12,15 +12,15 @@ HumanA::~HumanA()
 
 std::string	HumanA::get_name(void)
 {
-	return (this->name);
+	return (name);
 }
 
 Weapon	&HumanA::get_weapon(void)
 {
-	return (this->weapon);
+	return (weapon);
 }
 
 void	HumanA::attack(void)
 {
-	std::cout << this->get_name() << "attacks with their " << this->get_weapon().getType() << std::endl;
+	std::cout << get_name() << "attacks with their " << get_weapon().getType() << std::endl;
 }

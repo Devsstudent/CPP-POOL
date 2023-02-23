@@ -18,7 +18,7 @@ void	write_to_file(std::ofstream &outfile, std::string line, std::string s2, std
 			index = pos + s1.size();
 		}
 	}
-	if (index < line.size())
+	if ((size_t) index < line.size())
 		outfile << line.substr(index, line.size() - index);
 	outfile << std::endl;
 }
