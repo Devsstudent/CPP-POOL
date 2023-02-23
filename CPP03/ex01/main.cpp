@@ -1,11 +1,12 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap Bob("Bob");
-	ClapTrap Lea("Lea");
-	ClapTrap Eli("Eli");
-	ClapTrap C;
+	ScavTrap Bob("Bob");
+	ScavTrap Lea("Lea");
+	ScavTrap Eli("Eli");
+	ScavTrap C;
 
 	C = Lea; 
 	Eli.attack("Macron");
