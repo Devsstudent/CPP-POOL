@@ -8,7 +8,7 @@ Zombie::Zombie()
 Zombie::Zombie( std::string name)
 {
 	this->name = name;
-	std::cout << "A zombie named " << this->name << "as been contructed" << std::endl;
+	std::cout << "A zombie named " << this->name << " as been contructed" << std::endl;
 }
 
 Zombie::~Zombie()

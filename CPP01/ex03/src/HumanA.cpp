@@ -22,5 +22,5 @@ Weapon	&HumanA::get_weapon(void)
 
 void	HumanA::attack(void)
 {
-	std::cout << get_name() << "attacks with their " << get_weapon().getType() << std::endl;
+	std::cout << get_name() << " attacks with their " << get_weapon().getType() << std::endl;
 }
