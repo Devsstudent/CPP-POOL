@@ -3,18 +3,21 @@
 Cat::Cat(void)
 {
 	setType("Cat");
+	cerveaux = new Brain();
 	std::cout << "A cat has been constructed" << std::endl;
 }
 
 Cat::Cat(const Cat &a)
 {
 	setType(a.getType());
+	cerveaux = a.cerveaux;
 	std::cout << "A cat has been constructed by copy" << std::endl;
 }
 
 Cat	&Cat::operator = (const Cat &a)
 {
 	setType(a.getType());
+	cerveaux = a.cerveaux;
 	std::cout << "Overload operator egal called" << std::endl;
 	return (*this);
 }
@@ -22,6 +25,7 @@ Cat	&Cat::operator = (const Cat &a)
 Cat::~Cat(void)
 {
 	std::cout << "A cat has been destroyed" << std::endl;
+	delete cerveaux;
 }
 
 void	Cat::makeSound(void) const

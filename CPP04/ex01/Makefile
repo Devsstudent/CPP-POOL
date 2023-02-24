@@ -1,6 +1,6 @@
 CC = c++
 CFLAGS = -MMD -Wall -Werror -Wextra -std=c++98
-OBJ = Animal.o main.o Cat.o Dog.o WrongCat.o WrongAnimal.o
+OBJ = Animal.o main.o Cat.o Dog.o Brain.o copy_array.o
 DD = $(OBJ:.o=.d)
 NAME = Animal
 

@@ -1,30 +1,30 @@
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void)
+WrongCat::WrongCat(void)
 {
 	setType("Cat");
 	std::cout << "A cat has been constructed" << std::endl;
 }
 
-Cat::Cat(const Cat &a)
+WrongCat::WrongCat(const WrongCat &a)
 {
 	setType(a.getType());
 	std::cout << "A cat has been constructed by copy" << std::endl;
 }
 
-Cat	&Cat::operator = (const Cat &a)
+WrongCat	&WrongCat::operator = (const WrongCat &a)
 {
 	setType(a.getType());
 	std::cout << "Overload operator egal called" << std::endl;
 	return (*this);
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
 	std::cout << "A cat has been destroyed" << std::endl;
 }
 
-void	Cat::makeSound(void) const
+void	WrongCat::makeSound(void) const
 {
 	std::cout << "Miaouu.." << std::endl;
 }

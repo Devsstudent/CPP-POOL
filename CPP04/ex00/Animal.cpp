@@ -24,10 +24,7 @@ Animal::~Animal(void)
 
 void	Animal::makeSound(void) const
 {
-	if (type == "Cat")
-		std::cout << "Miaouu.." << std::endl;
-	else if (type == "Dog")
-		std::cout << "Ouaaaf.." << std::endl;
+	std::cout << "No sound, just the parent class" << std::endl;
 }
 
 void	Animal::setType(std::string _type)
