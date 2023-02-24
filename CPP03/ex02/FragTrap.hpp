@@ -3,9 +3,9 @@
 
 # include "ClapTrap.hpp"
 
-class	FragTrap: public ClapTrap{
+class	FragTrap: public virtual ClapTrap{
 	public :
-		FragTrap(std::string name);
+		FragTrap(const std::string _name);
 		FragTrap(void);
 		FragTrap(const FragTrap &a);
 		FragTrap& operator=(const FragTrap &a);

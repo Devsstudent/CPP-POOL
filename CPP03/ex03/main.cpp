@@ -1,12 +1,13 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
 	ScavTrap Bob("Bob");
 	ScavTrap Lea("Lea");
-	FragTrap Eli("Eli");
+	DiamondTrap Eli("Eli");
 	ScavTrap C;
 
 	C = Lea; 

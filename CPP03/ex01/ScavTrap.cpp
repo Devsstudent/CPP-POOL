@@ -44,16 +44,16 @@ void	ScavTrap::attack(const std::string &target)
 {
 	if (getHitPoint() <= 0)
 	{
-		(std::cout << "ClavTrap " << getName() << " is dead, no hit_points left .." << std::endl);
+		(std::cout << "ScavTrap " << getName() << " is dead, no hit_points left .." << std::endl);
 		return ;
 	}
 	else if (getEnergyPoint() <= 0)
 	{
-		std::cout << "ClavTrap " << getName() << " has no mana" << std::endl;
+		std::cout << "ScavTrap " << getName() << " has no mana" << std::endl;
 		return ;
 	}
 	setEnergyPoint(getEnergyPoint() - 1);
-	std::cout << "ClavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage !" << std::endl;
+	std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage !" << std::endl;
 }
 
 void	ScavTrap::guardGate(void)

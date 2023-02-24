@@ -8,8 +8,9 @@ FragTrap::FragTrap(void): ClapTrap()
 	std::cout << "FragTrap " << getName() << " has been Constructed" << std::endl;
 }
 
-FragTrap::FragTrap(const std::string name): ClapTrap(name)
+FragTrap::FragTrap(const std::string _name): ClapTrap(_name)
 {
+	name = _name;
 	setHitPoint(100);
 	setEnergyPoint(100);
 	setAttackDamage(30);
@@ -42,5 +43,5 @@ FragTrap::~FragTrap(void)
 
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap" << getName() << " proposing you a high fives :) ! You must accept it" << 
+	std::cout << "FragTrap" << getName() << " proposing you a high fives :) ! You must accept it" << std::endl;
 }
