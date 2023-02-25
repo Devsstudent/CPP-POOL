@@ -7,13 +7,15 @@ Brain::Brain(void)
 
 Brain::Brain(const Brain &a)
 {
-	copyy(ideas, &a.ideas);
+	for (int i = 0; i < 100; i++)
+		ideas[i] = a.ideas[i];
 	std::cout << "Brain copy Constructor Call" << std::endl;
 }
 
 Brain &Brain::operator = (const Brain &a)
 {
-	copyy(ideas, a.ideas);
+	for (int i = 0; i < 100; i++)
+		ideas[i] = a.ideas[i];
 	return (*this);
 }
 

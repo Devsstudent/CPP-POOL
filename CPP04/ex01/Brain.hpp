@@ -11,8 +11,8 @@ class	Brain {
 		Brain(const Brain &a);
 		Brain & operator = (const Brain &a);
 		~Brain(void);
+		void	showIdeas(void);
+		void	setIdeas(std::string _ideas);
 };
-
-void	copyy(std::string a[100], std::string b[100]);
 
 #endif
