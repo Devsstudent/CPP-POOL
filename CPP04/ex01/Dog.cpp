@@ -2,21 +2,23 @@
 
 Dog::Dog(void)
 {
-	setType("Dog"); cerveaux = new Brain();
+	setType("Dog");
+	cerveaux = new Brain();
 	std::cout << "A dog has been constructed" << std::endl;
 }
 
 Dog::Dog(const Dog &a)
 {
 	setType(a.getType());
-	cerveaux = a.cerveaux;
+	cerveaux = new Brain(*a.cerveaux);
 	std::cout << "A dog has been constructed by copy" << std::endl;
 }
 
 Dog	&Dog::operator = (const Dog &a)
 {
 	setType(a.getType());
-	cerveaux = a.cerveaux;
+	delete cerveaux;
+	cerveaux = new Brain(*a.cerveaux);
 	std::cout << "Overload operal egal called" << std::endl;
 	return (*this);
 }
@@ -24,7 +26,10 @@ Dog	&Dog::operator = (const Dog &a)
 Dog::~Dog(void)
 {
 	std::cout << "A dog has been destroyed" << std::endl;
-	delete cerveaux;
+	if (cerveaux)
+		delete cerveaux;
+	else
+		std::cout << "not brain" << std::endl;
 }
 
 Brain	*Dog::getBrain(void)

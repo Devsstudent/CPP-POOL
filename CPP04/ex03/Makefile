@@ -1,12 +1,12 @@
 CC = c++
-CFLAGS = -MMD -Wall -Werror -Wextra -std=c++98 ## -fsanitize=address
-OBJ = Animal.o main.o Cat.o Dog.o Brain.o
+CFLAGS = -g -MMD -std=c++98 -Wall -Werror -Wextra
+OBJ = AMateria.o IMateriaSource.o ICharacter.o Cure.o Ice.o
+NAME = ex03
 DD = $(OBJ:.o=.d)
-NAME = Animal
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o:%.cpp
@@ -20,6 +20,6 @@ fclean: clean
 
 re : fclean all
 
-.PHONY:all re clean fclean
+.PHONY: all re fclean clean
 
 -include $(DD)

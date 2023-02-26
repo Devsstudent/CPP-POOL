@@ -10,14 +10,15 @@ Cat::Cat(void)
 Cat::Cat(const Cat &a)
 {
 	setType(a.getType());
-	cerveaux = a.cerveaux;
+	cerveaux = new Brain(*a.cerveaux);
 	std::cout << "A cat has been constructed by copy" << std::endl;
 }
 
 Cat	&Cat::operator = (const Cat &a)
 {
 	setType(a.getType());
-	cerveaux = a.cerveaux;
+	delete cerveaux;
+	cerveaux = new Brain(*a.cerveaux);
 	std::cout << "Overload operator egal called" << std::endl;
 	return (*this);
 }

@@ -7,6 +7,8 @@ int  main(void)
 {
   const  Animal* i = new Dog();
   const  Animal* j = new Cat();
+  Cat    a1;
+  Cat    a2(a1);
 
   j->makeSound();
   i->makeSound();
