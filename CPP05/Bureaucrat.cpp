@@ -1,12 +1,82 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string _name, unsigned int _grade)
+Bureaucrat::Bureaucrat(const std::string _name, const long _grade)
 {
-	name = _name
+	name = _name;
+	setGrade(_grade);
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &a)
+{
+	name = a.name;
+	grade = a.grade;
+}
+
+Bureaucrat &Bureaucrat::operator = (const Bureaucrat &a)
+{
+	name = a.name;
+	grade = a.grade;
+	return (*this);
+}
+
+void	Bureaucrat::setGrade(long _grade)
+{
 	try
 	{
-		grade = _grade;
+		if (_grade >= 150)
+			throw (GradeTooHighException());
+		else if (_grade <= 0)
+			throw (GradeTooLowException());
+		else
+			grade = _grade;
 	}
-	catch (this.GradeTooHighException)
-	catch (this.GradeTooLowException)
+	catch (Bureaucrat::GradeTooLowException & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
+
+void	Bureaucrat::upGrade(void)
+{
+	if (!grade)
+		return ;
+	setGrade(grade - 1);
+}
+
+void	Bureaucrat::downGrade(void)
+{
+	if (!grade)
+		return ;
+	setGrade(grade + 1);
+}
+
+Bureaucrat::~Bureaucrat(void)
+{
+	std::cout << "Bureaucrat Destructor Called" << std::endl;
+}
+
+std::ostream&	operator << (std::ostream& os, const Bureaucrat &a)
+{
+	if (a.getGrade() < 1)
+	{
+		os << a.getName() << ", bureaucrat as a wrong grade .." << std::endl;
+		return (os);
+	}
+	os << a.getName() << ", bureaucrat grade " << a.getGrade() << std::endl;
+	return (os);
+}
+
+std::string	Bureaucrat::getName(void) const
+{
+	return (name);
+}
+
+unsigned int	Bureaucrat::getGrade(void) const
+{
+	return (grade);
+}
+

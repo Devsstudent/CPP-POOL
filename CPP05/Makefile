@@ -1,5 +1,5 @@
 CC=c++
-CFLAGS = -MMD -g -Wall -Werror -Wextra -str=c++98
+CFLAGS = -MMD -g -Wall -Werror -Wextra -std=c++98
 NAME = Bureaucratie
 OBJ = Bureaucrat.o main.o
 DD = $(OBJ:.o=.d)

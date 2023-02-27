@@ -4,24 +4,36 @@
 #include <iostream>
 #include <stdexcept>
 
-class	Bureaucrat: {
+class	Bureaucrat {
 	private:
-		const std::string	name;
+		std::string	name;
 		unsigned int	grade;
 		class GradeTooHighException: public std::exception {
-			
+			public :
+				GradeTooHighException(void){}
+				virtual const char * what () const throw () {
+					return ("The grade is too High :)");
+				}
 		};
 		class GradeTooLowException: public std::exception {
-			
+			public:
+				GradeTooLowException(void){}
+				virtual const char * what () const throw () {
+					return ("The grade is too low : )");
+				}
 		};
 	public:
-		Bureaucrat(const std::string _name, unsigned int _grade);
+		Bureaucrat(const std::string _name, const long _grade);
 		Bureaucrat(const Bureaucrat &a);
 		Bureaucrat & operator = (const Bureaucrat &a);
 		~Bureaucrat(void);
-		std::string		getName(void);
-		unsigned int	getGrade(void);
-		Bureaucrat & operator << (const Bureaucrat &a);
+		std::string		getName(void) const;
+		unsigned int	getGrade(void) const;
+		void			setGrade(const long _grade);
+		void			downGrade(void);
+		void			upGrade(void);
 };
+
+std::ostream& operator << (std::ostream& os, const Bureaucrat& a);
 
 #endif

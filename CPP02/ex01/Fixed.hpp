@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 10:20:55 by odessein          #+#    #+#             */
-/*   Updated: 2023/02/22 22:06:27 by odessein         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:54:02 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ class	Fixed{
 		Fixed	operator -- (int);
 };
 
-std::ostream& operator<< (std::ostream& os, const Fixed& value);
+std::ostream& operator << (std::ostream& os, const Fixed& value);
+
 #endif
