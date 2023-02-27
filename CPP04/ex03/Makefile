@@ -1,6 +1,6 @@
 CC = c++
 CFLAGS = -g -MMD -std=c++98 -Wall -Werror -Wextra
-OBJ = AMateria.o IMateriaSource.o ICharacter.o Cure.o Ice.o
+OBJ = AMateria.o IMateriaSource.o ICharacter.o Cure.o Ice.o Character.o
 NAME = ex03
 DD = $(OBJ:.o=.d)
 

@@ -23,13 +23,3 @@ AMateria::~AMateria(void)
 {
   std::cout << "AMateria Desctructor Called" << std::endl;
 }
-
-AMateria  *AMateria::clone(void) const
-{
-  return (new AMateria(materia_name));
-}
-
-void  AMateria::use(ICharacter& target)
-{
-  
-}

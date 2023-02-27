@@ -3,13 +3,16 @@
 ICharacter::ICharacter(const std::string &name)
 {
   _name = name;
+  inventory = new AMateria[4];
+  std::cout << "ICharacter Constructor Called" << std::endl;
 }
 
 ICharacter::ICharacter(const ICharacter &a)
 {
   _name = a.name;
+  inventory = new AMateria[4];
   for (int i = 0; i < 4; i++)
-    iventory[i] = a.inventory[i];
+    iventory[i].materia_name = a.inventory[i].materia_name;
 }
 
 ICharacter &ICharacter::operator = (const ICharacter &a)
