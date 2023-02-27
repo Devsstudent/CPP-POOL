@@ -57,6 +57,7 @@ void	Character::equip(AMateria *m)
 	inventory[i] = m;
 }
 
+//Careful on using it, you may lose an address :)
 void	Character::unequip(int idx)
 {
 	inventory[idx] = NULL;

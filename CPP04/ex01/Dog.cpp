@@ -9,8 +9,11 @@ Dog::Dog(void)
 
 Dog::Dog(const Dog &a)
 {
-	setType(a.getType());
-	cerveaux = new Brain(*a.cerveaux);
+	if (this != &a)
+	{
+		setType(a.getType());
+		cerveaux = new Brain(*a.cerveaux);
+	}
 	std::cout << "A dog has been constructed by copy" << std::endl;
 }
 

@@ -7,8 +7,11 @@ Brain::Brain(void)
 
 Brain::Brain(const Brain &a)
 {
-	for (int i = 0; i < 100; i++)
-		ideas[i] = a.ideas[i];
+	if (this != &a)
+	{
+		for (int i = 0; i < 100; i++)
+			ideas[i] = a.ideas[i];
+	}
 	std::cout << "Brain copy Constructor Call" << std::endl;
 }
 

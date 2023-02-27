@@ -7,7 +7,8 @@ Animal::Animal(void) : type("None")
 
 Animal::Animal(const Animal &a)
 {
-	type = a.type;
+	if (this != &a)
+		type = a.type;
 	std::cout << "Animal copy Constructor Called" << std::endl;
 }
 

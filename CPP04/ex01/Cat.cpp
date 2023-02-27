@@ -9,8 +9,11 @@ Cat::Cat(void)
 
 Cat::Cat(const Cat &a)
 {
-	setType(a.getType());
-	cerveaux = new Brain(*a.cerveaux);
+	if (this != &a)
+	{
+		setType(a.getType());
+		cerveaux = new Brain(*a.cerveaux);
+	}
 	std::cout << "A cat has been constructed by copy" << std::endl;
 }
 
