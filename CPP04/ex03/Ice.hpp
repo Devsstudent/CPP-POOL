@@ -1,14 +1,21 @@
-#ifnedef ICE_HPP
+#ifndef ICE_HPP
 # define ICE_HPP
 
-class Ice: public AMateria{
+# include "AMateria.hpp"
+
+class	ICharacter;
+
+class Ice: public AMateria {
   protected:
-    _name;
+    std::string	_name;
   public:
-    Ice(std::string const &type);
+    Ice(void);
     Ice(const Ice &a);
     Ice  & operator = (const Ice &a);
-    ~Ice(void);
+	void	use(ICharacter& target);
+	AMateria	*clone(void) const;
+	std::string	getName(void);
+    virtual ~Ice(void);
 };
 
 #endif

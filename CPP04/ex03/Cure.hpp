@@ -1,16 +1,21 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-# include <iostream>
+# include "AMateria.hpp"
+
+class AMateria;
 
 class  Cure: public AMateria {
   protected:
-    _name;
+	std::string	_name;
   public:
-    Cure(std::string  const &type);
+    Cure(void);
     Cure(const Cure &a);
     Cure & operator = (const Cure &a);
-    ~Cure(void);
+	void		use(ICharacter &target);
+	AMateria	*clone(void) const;
+	std::string	getName(void);
+    virtual ~Cure(void);
 };
 
 #endif

@@ -1,11 +1,70 @@
 #include "Character.hpp"
 
-Character::Character(void)
+Character::Character(void): _name(NULL)
 {
-  std::cout << "Character Constructor Called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+	std::cout << "Character Constructor Called" << std::endl;
+}
+
+Character::Character(const std::string &name): _name(name)
+{
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+	std::cout << "Character Constructor Called" << std::endl;
 }
 
 Character::Character(const Character &a)
 {
-  std::cout << ""
+	_name = a._name;
+	for (int i = 0; i < 4; i++)
+		inventory[i] = a.inventory[i];
+	std::cout << "Character Copy Constructor Called" << std::endl;
+}
+
+Character &Character::operator = (const Character &a)
+{
+	_name = a._name;
+	for (int i = 0; i < 4; i++)
+		inventory[i] = a.inventory[i];
+	return (*this);
+}
+
+Character::~Character(void)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i])
+			delete (inventory[i]);
+	}
+	std::cout << "Character Destructor Called" << std::endl;
+}
+
+std::string const &Character::getName(void) const
+{
+	return (_name);
+}
+
+void	Character::equip(AMateria *m)
+{
+	int	i;
+
+	i = 0;
+	while (inventory[i] && i < 4)
+		i++;
+	if (i >= 4)
+		return ;
+	inventory[i] = m;
+}
+
+void	Character::unequip(int idx)
+{
+	inventory[idx] = NULL;
+}
+
+void	Character::use(int idx, ICharacter &target)
+{
+	if ((idx < 0 || idx > 3) || !inventory[idx])
+		return ;
+	inventory[idx]->use(target);
 }

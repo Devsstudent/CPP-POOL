@@ -1,8 +1,8 @@
 #include "Cure.hpp"
 
-Cure::Cure(std::string const &type)
+Cure::Cure(void)
 {
-  _name = type;
+  _name = "cure";
 }
 
 Cure::Cure(const Cure &a)
@@ -12,7 +12,7 @@ Cure::Cure(const Cure &a)
 
 Cure  &Cure::operator = (const Cure &a)
 {
-  _name = a.name;
+  _name = a._name;
   return (*this);
 }
 
@@ -23,5 +23,15 @@ Cure::~Cure(void)
 
 void  Cure::use(ICharacter& target)
 {
-  std::cout << "* healds " << targer._name << "'s wounds *" << std::endl;
+  std::cout << "* healds " << target.getName() << "'s wounds *" << std::endl;
+}
+
+AMateria	*Cure::clone(void) const
+{
+	return (new Cure());
+}
+
+std::string	Cure::getName(void)
+{
+	return (_name);
 }

@@ -1,9 +1,8 @@
 #include "Ice.hpp"
 
-
-Ice::Ice(std::string const &type)
+Ice::Ice(void)
 {
-  _name = type;
+  _name = "ice";
 }
 
 Ice::Ice(const Ice &a)
@@ -13,7 +12,7 @@ Ice::Ice(const Ice &a)
 
 Ice  &Ice::operator = (const Ice &a)
 {
-  _name = a.name;
+  _name = a._name;
   return (*this);
 }
 
@@ -24,5 +23,15 @@ Ice::~Ice(void)
 
 void  Ice::use(ICharacter& target)
 {
-  std::cout << "* shoots an ice bolt at " << target._name << " *" << std::endl;
+  std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+
+AMateria	*Ice::clone(void) const
+{
+	return (new Ice());
+}
+
+std::string	Ice::getName(void)
+{
+	return (_name);
 }

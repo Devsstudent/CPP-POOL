@@ -1,5 +1,10 @@
 #include "AMateria.hpp"
 
+AMateria::AMateria(void)
+{
+  std::cout << "AMateria Constructor Called" << std::endl;
+}
+
 AMateria::AMateria(std::string const & type)
 {
   materia_name = type;
@@ -22,4 +27,15 @@ AMateria  &AMateria::operator = (const AMateria &a)
 AMateria::~AMateria(void)
 {
   std::cout << "AMateria Desctructor Called" << std::endl;
+}
+
+void	AMateria::use(ICharacter& target)
+{
+	(void) target;
+	std::cout << "Not type defined" << std::endl;
+}
+
+std::string	AMateria::getName(void)
+{
+	return (materia_name);
 }
