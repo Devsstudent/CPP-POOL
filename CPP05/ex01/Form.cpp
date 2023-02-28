@@ -1,8 +1,30 @@
 #include "Form.hpp"
 
-Form::Form(const std::string _name, const int _grade_sign, const int _grade_exec): _signed(false), name(_name), grade_sign(_grade_sign), grade_exec(_grade_exec)
+Form::Form(const std::string _name, const int _grade_sign, const int _grade_exec): _signed(false), name(_name), grade_sign(initGrade(_grade_sign)), grade_exec(initGrade(_grade_exec))
 {
 	std::cout << "Form Constructor Called" << std::endl;
+}
+
+int	Form::initGrade(const int _grade)
+{
+	try
+	{
+		if (_grade <= 0)
+			throw (GradeTooHighException());
+		else if (_grade > 150)
+			throw (GradeTooLowException());
+		else
+			return (_grade);
+	}
+	catch (GradeTooLowException& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+	catch (GradeTooHighException& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+	return (0);
 }
 
 Form::Form(const Form &a): _signed(a._signed), name(a.name), grade_sign(a.grade_sign), grade_exec(a.grade_exec)
@@ -25,7 +47,9 @@ void	Form::beSigned(const Bureaucrat &a)
 {
 	try
 	{
-		if ((int) a.getGrade() > getGradeSign())
+		if (getGradeSign() == 0)
+			throw (GradeWrongException());
+		else if ((int) a.getGrade() > getGradeSign())
 			throw (GradeTooLowException());
 		else if (a.getGrade() == 0)
 			throw (GradeWrongException());
@@ -37,11 +61,11 @@ void	Form::beSigned(const Bureaucrat &a)
 	}
 	catch (GradeTooLowException& exception)
 	{
-		std::cout << " couldn't sign because his " << exception.what() << std::endl;
+		std::cout << " couldn't sign because " << exception.what() << std::endl;
 	}
 	catch (GradeWrongException& exception)
 	{
-		std::cout << " couldn't sign because his " << exception.noGrade() << std::endl;
+		std::cout << " couldn't sign because " << exception.noGrade() << std::endl;
 	}
 }
 
@@ -56,17 +80,17 @@ Form::GradeWrongException::GradeWrongException(void)
 
 const char	*Form::GradeTooLowException::what() const throw ()
 {
-	return ("grade is too low"); 
+	return ("his grade is too low"); 
 }
 
 const char	*Form::GradeWrongException::noGrade() const throw ()
 {
-	return ("grade is wrong"); 
+	return ("some grade are wrong"); 
 }
 
 const char	*Form::GradeTooHighException::what() const throw()
 {
-	return ("grade is too high"); 
+	return ("his grade is too high"); 
 }
 
 bool	Form::getSign(void) const
