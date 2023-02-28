@@ -80,3 +80,16 @@ unsigned int	Bureaucrat::getGrade(void) const
 	return (grade);
 }
 
+const char	*Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("The grade is too Low :)");
+}
+
+const char	*Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("The grade is too High :)");
+}
+
+void	Bureaucrat::signForm(Form &a)
+{
+	std::cout << getName();
+	a.beSigned(*this);
+}

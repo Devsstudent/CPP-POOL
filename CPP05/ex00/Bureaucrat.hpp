@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 
+class	Form;
+
 class	Bureaucrat {
 	private:
 		std::string	name;
@@ -11,16 +13,12 @@ class	Bureaucrat {
 		class GradeTooHighException: public std::exception {
 			public :
 				GradeTooHighException(void){}
-				virtual const char * what () const throw () {
-					return ("The grade is too High :)");
-				}
+				virtual const char * what () const throw ();
 		};
 		class GradeTooLowException: public std::exception {
 			public:
 				GradeTooLowException(void){}
-				virtual const char * what () const throw () {
-					return ("The grade is too low : )");
-				}
+				virtual const char * what () const throw ();
 		};
 	public:
 		Bureaucrat(const std::string _name, const long _grade);
