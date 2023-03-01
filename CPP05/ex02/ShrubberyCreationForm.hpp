@@ -13,16 +13,19 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
+# include "AForm.hpp"
+
 class ShrubberyCreationForm: public AForm
 {
 	private:
+		const std::string	target;
 
 	// Forbidden
 
 	public:
 	// Constructors
-		ShrubberyCreationForm(const std::string _name, const int _grade_sign, const int _grade_exec);
-		ShrubberyCreationForm(const ShrubberyCreationFormt &rhs);
+		ShrubberyCreationForm(const std::string target);
+		ShrubberyCreationForm(const ShrubberyCreationFormt &a);
 
 	// Destructor
 		~ShrubberyCreationForm(void);
@@ -32,9 +35,10 @@ class ShrubberyCreationForm: public AForm
 	// Setters
 
 	// Operators
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &rhs);
+		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &a);
 
 	// Methods
+	void	CreationForm(void)
 };
 
 #endif

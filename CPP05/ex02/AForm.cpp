@@ -1,11 +1,11 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(const std::string _name, const int _grade_sign, const int _grade_exec): _signed(false), name(_name), grade_sign(initGrade(_grade_sign)), grade_exec(initGrade(_grade_exec))
+AForm::AForm(const std::string _name, const int _grade_sign, const int _grade_exec): _signed(false), name(_name), grade_sign(initGrade(_grade_sign)), grade_exec(initGrade(_grade_exec))
 {
-	std::cout << "Form Constructor Called" << std::endl;
+	std::cout << "AForm Constructor Called" << std::endl;
 }
 
-int	Form::initGrade(const int _grade)
+int	AForm::initGrade(const int _grade)
 {
 	try
 	{
@@ -27,23 +27,23 @@ int	Form::initGrade(const int _grade)
 	return (0);
 }
 
-Form::Form(const Form &a): _signed(a._signed), name(a.name), grade_sign(a.grade_sign), grade_exec(a.grade_exec)
+AForm::AForm(const AForm &a): _signed(a._signed), name(a.name), grade_sign(a.grade_sign), grade_exec(a.grade_exec)
 {
-	std::cout << "Form Constructor Called" << std::endl;
+	std::cout << "AForm Constructor Called" << std::endl;
 }
 
-Form	&Form::operator = (const Form &a)
+AForm	&AForm::operator = (const AForm &a)
 {
 	_signed = a._signed;
 	return (*this);
 }
 
-Form::~Form(void)
+AForm::~AForm(void)
 {
-	std::cout << "Form Desctructor Called" << std::endl;
+	std::cout << "AForm Desctructor Called" << std::endl;
 }
 
-void	Form::beSigned(const Bureaucrat &a)
+void	AForm::beSigned(const Bureaucrat &a)
 {
 	try
 	{
@@ -69,41 +69,46 @@ void	Form::beSigned(const Bureaucrat &a)
 	}
 }
 
-Form::GradeTooLowException::GradeTooLowException(void)
+AForm::GradeTooLowException::GradeTooLowException(void)
 {}
 
-Form::GradeTooHighException::GradeTooHighException(void)
+AForm::GradeTooHighException::GradeTooHighException(void)
 {}
 
-Form::GradeWrongException::GradeWrongException(void)
+AForm::GradeWrongException::GradeWrongException(void)
 {}
 
-const char	*Form::GradeTooLowException::what() const throw ()
+const char	*AForm::GradeTooLowException::what() const throw ()
 {
 	return ("his grade is too low"); 
 }
 
-const char	*Form::GradeWrongException::noGrade() const throw ()
+const char	*AForm::GradeWrongException::noGrade() const throw ()
 {
 	return ("some grade are wrong"); 
 }
 
-const char	*Form::GradeTooHighException::what() const throw()
+const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("his grade is too high"); 
 }
 
-bool	Form::getSign(void) const
+bool	AForm::getSign(void) const
 {
 	return (_signed);
 }
 
-const std::string	Form::getName(void) const
+const std::string	AForm::getName(void) const
 {
 	return (name);
 }
 
-int	Form::getGradeSign(void) const
+int	AForm::getGradeSign(void) const
 {
 	return (grade_sign);
+}
+
+int	AForm::getGradeExec(void) const
+{
+	return (grade_exec);
 }

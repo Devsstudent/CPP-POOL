@@ -31,7 +31,7 @@ class	Bureaucrat {
 		void			setGrade(const long _grade);
 		void			downGrade(void);
 		void			upGrade(void);
-		void			signForm(Form &a);
+		void			signForm(AForm &a);
 };
 
 std::ostream& operator << (std::ostream& os, const Bureaucrat& a);

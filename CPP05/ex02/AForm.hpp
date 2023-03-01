@@ -2,10 +2,11 @@
 # define AFORM_HPP
 
 # include "Bureaucrat.hpp"
+# include <fstream>
 
 class	Bureaucrat;
 
-class	Form{
+class	AForm{
 	private:
 		bool	_signed;
 		const	std::string	name;
@@ -27,14 +28,15 @@ class	Form{
 				GradeWrongException(void);
 				virtual const char * noGrade() const throw();
 		};
-		Form(const std::string _name, const int _grade_sign, const int _grade_exec);
-		Form(const Form &a);
-		Form & operator = (const Form &a);
-		virtual ~Form(void);
+		AForm(const std::string _name, const int _grade_sign, const int _grade_exec);
+		AForm(const AForm &a);
+		AForm & operator = (const AForm &a);
+		virtual ~AForm(void);
 		int	initGrade(const int _grade);
 		void				beSigned(const Bureaucrat &a);
 		bool				getSign(void) const;
 		int			getGradeSign(void) const;
+		int			getGradeExec(void) const;
 		virtual const std::string	getName(void) const = 0;
 		virtual void	execute(Bureaucrat const & executor) const;
 };

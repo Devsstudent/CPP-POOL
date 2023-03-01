@@ -1,7 +1,7 @@
 CC=c++
 CFLAGS = -MMD -g -Wall -Werror -Wextra -std=c++98
 NAME = Bureaucratie
-OBJ = Bureaucrat.o main.o Form.o
+OBJ = Bureaucrat.o main.o AForm.o ShrubberyCreationForm.o
 DD = $(OBJ:.o=.d)
 
 all : $(NAME)
