@@ -18,12 +18,12 @@ Fixed::Fixed(const Fixed& a)
 
 Fixed::Fixed(): fixed_point_int(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+//	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Desctructor called" << std::endl;
+	//std::cout << "Desctructor called" << std::endl;
 }
 
 Fixed &Fixed ::operator = (const Fixed& a)
