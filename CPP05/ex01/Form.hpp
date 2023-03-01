@@ -31,11 +31,14 @@ class	Form{
 		Form(const Form &a);
 		Form & operator = (const Form &a);
 		~Form(void);
-		int	initGrade(const int _grade);
+		int					initGrade(const int _grade);
 		void				beSigned(const Bureaucrat &a);
 		bool				getSign(void) const;
-		int			getGradeSign(void) const;
+		int					getGradeSign(void) const;
+		int					getGradeExec(void) const;
 		const std::string	getName(void) const;
 };
+
+std::ostream& operator << (std::ostream& os, const Form &form);
 
 #endif

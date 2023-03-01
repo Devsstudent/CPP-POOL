@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:41:43 by odessein          #+#    #+#             */
-/*   Updated: 2023/02/28 18:47:53 by odessein         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:27:21 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ class ShrubberyCreationForm: public AForm
 {
 	private:
 		const std::string	target;
+	// Operators
+		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &a);
 
 	// Forbidden
 
 	public:
 	// Constructors
 		ShrubberyCreationForm(const std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationFormt &a);
+		ShrubberyCreationForm(const ShrubberyCreationForm &a);
 
 	// Destructor
 		~ShrubberyCreationForm(void);
@@ -34,11 +36,9 @@ class ShrubberyCreationForm: public AForm
 
 	// Setters
 
-	// Operators
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &a);
 
 	// Methods
-	void	CreationForm(void)
+	void	CreationForm(void) const;
 };
 
 #endif

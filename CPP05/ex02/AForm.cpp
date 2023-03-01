@@ -112,3 +112,43 @@ int	AForm::getGradeExec(void) const
 {
 	return (grade_exec);
 }
+
+
+void	AForm::execute(Bureaucrat const & executor) const
+{
+	try
+	{
+		if (!getSign() || (int) executor.getGrade() <= getGradeExec())
+			throw (GradeWrongException());
+		if (name == "PresidentialPardonForm")
+		{
+			PardonForm();
+			std::cout << " executed " << getName() << std::endl;
+		}
+		else if (name == "ShrubberyCreationForm")
+		{
+			CreationForm();
+			std::cout << " executed " << getName() << std::endl;
+		}
+		else if (name == "RobotomyRequestForm")
+		{
+			RequestForm();
+			std::cout << " executed " << getName() << std::endl;
+		}
+	}
+	catch (GradeWrongException& exception)
+	{
+		std::cout << " cannot execute " << getName() << std::endl;
+	}
+}
+
+std::ostream& operator << (std::ostream& os, const AForm &form)
+{
+	os << form.getName();
+	if (form.getSign())
+		 os << " is signed";
+	else
+		os << " isn't signed";
+	os << " " << "grade sign : " << form.getGradeSign() << " grade exec : " << form.getGradeExec() << std::endl;
+	return (os);
+}

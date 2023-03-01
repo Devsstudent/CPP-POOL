@@ -26,12 +26,6 @@ Fixed::~Fixed()
 	std::cout << "Desctructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &a)
-{
-	fixed_point_int = a.getRawBits();
-//	std::cout << "Copy Constructor called" << std::endl;
-}
-
 Fixed &Fixed ::operator = (const Fixed& a)
 {
 //	std::cout << "Copy assignment operator called" << std::endl;
@@ -98,25 +92,25 @@ bool	Fixed::operator != (const Fixed& a) const
 	return (this->getRawBits() != a.getRawBits());
 }
 
-Fixed&	Fixed::operator + (const Fixed& a)
+Fixed	Fixed::operator + (const Fixed& a)
 {
 	fixed_point_int = (a.getRawBits() + this->getRawBits());
 	return (*this);
 }
 
-Fixed& Fixed::operator - (const Fixed& a)
+Fixed Fixed::operator - (const Fixed& a)
 {
 	this->setRawBits(this->getRawBits() - a.getRawBits());
 	return (*this);
 }
 
-Fixed& Fixed::operator * (const Fixed& a)
+Fixed Fixed::operator * (const Fixed& a)
 {
 	this->setRawBits(this->getRawBits() * a.getRawBits() >> fractional);
 	return (*this);
 }
 
-Fixed& Fixed::operator / (const Fixed& a)
+Fixed Fixed::operator / (const Fixed& a)
 {
 	this->setRawBits(this->getRawBits() * (1 << fractional) / a.getRawBits());
 	return (*this);

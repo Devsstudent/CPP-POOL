@@ -18,7 +18,7 @@ Point::~Point()
 
 Point::Point(Point const &a): x(a.getX()), y(a.getY())
 {
-
+	std::cout << "Copy Constructor Called" << std::endl;
 }
 
 const Fixed&	Point::getX(void) const
@@ -28,5 +28,5 @@ const Fixed&	Point::getX(void) const
 
 const Fixed&	Point::getY(void) const
 {
-	return (this->x);
+	return (this->y);
 }

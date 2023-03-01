@@ -107,3 +107,19 @@ int	Form::getGradeSign(void) const
 {
 	return (grade_sign);
 }
+
+int	Form::getGradeExec(void) const
+{
+	return (grade_exec);
+}
+
+std::ostream& operator << (std::ostream& os, const Form &form)
+{
+	os << form.getName();
+	if (form.getSign())
+		 os << " is signed";
+	else
+		os << " isn't signed";
+	os << " " << "grade sign : " << form.getGradeSign() << " grade exec : " << form.getGradeExec() << std::endl;
+	return (os);
+}
