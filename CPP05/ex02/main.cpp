@@ -1,13 +1,26 @@
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
 	Bureaucrat	first("eheh", 3);
-	Bureaucrat	second("bruh", 167);
+	Bureaucrat	second("bruh", 57);
+	ShrubberyCreationForm A("bruh");
+	RobotomyRequestForm B("bruh");
+	PresidentialPardonForm C("eheh");
 
-	std::cout << first << std::endl;
-	second.upGrade();
-	first.upGrade();
-	std::cout << first << std::endl;
-	std::cout << second << std::endl;
+	first.signForm(A);
+	first.signForm(B);
+	second.signForm(C);
+	first.executeForm(A);
+	first.executeForm(B);
+	first.executeForm(C);
+	while (second.getGrade() > 25)
+		second.upGrade();
+	second.signForm(C);
+	second.executeForm(A);
+	second.executeForm(B);
+	second.executeForm(C);
 }

@@ -37,11 +37,11 @@ class	AForm{
 		bool				getSign(void) const;
 		int			getGradeSign(void) const;
 		int			getGradeExec(void) const;
-		virtual const std::string	getName(void) const = 0;
+		virtual const std::string	getName(void) const;
 		void	execute(Bureaucrat const & executor) const;
-		virtual void	PardonForm(void) const = 0;
-		virtual void	RequestForm(void) const = 0;
-		virtual void	CreationForm(void) const = 0;
+		virtual void	PardonForm(void) const;
+		virtual void	RequestForm(void) const;
+		virtual void	CreationForm(void) const;
 };
 
 std::ostream&	operator << (std::ostream& os, const AForm &form);

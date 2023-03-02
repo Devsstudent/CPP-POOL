@@ -118,7 +118,8 @@ void	AForm::execute(Bureaucrat const & executor) const
 {
 	try
 	{
-		if (!getSign() || (int) executor.getGrade() <= getGradeExec())
+			std::cout << executor.getGrade() << " " << getGradeExec() << " " << getSign() << std::endl;
+		if (!getSign() || (int) executor.getGrade() > getGradeExec())
 			throw (GradeWrongException());
 		if (name == "PresidentialPardonForm")
 		{
@@ -140,6 +141,18 @@ void	AForm::execute(Bureaucrat const & executor) const
 	{
 		std::cout << " cannot execute " << getName() << std::endl;
 	}
+}
+
+void	AForm::PardonForm(void) const
+{
+}
+
+void	AForm::CreationForm(void) const
+{
+}
+
+void	AForm::RequestForm(void) const
+{
 }
 
 std::ostream& operator << (std::ostream& os, const AForm &form)
