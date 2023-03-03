@@ -90,12 +90,10 @@ const char	*Bureaucrat::GradeTooHighException::what() const throw() {
 
 void	Bureaucrat::signForm(AForm &a)
 {
-	std::cout << getName();
 	a.beSigned(*this);
 }
 
 void	Bureaucrat::executeForm(AForm const & form)
 {
-	std::cout << getName();
 	form.execute(*this);
 }

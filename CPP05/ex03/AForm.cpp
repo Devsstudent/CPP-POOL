@@ -55,17 +55,17 @@ void	AForm::beSigned(const Bureaucrat &a)
 			throw (GradeWrongException());
 		else
 		{
-			std::cout << " signed " << getName() << std::endl;
+			std::cout << a.getName() << " signed " << getName() << std::endl;
 			_signed = true;
 		}
 	}
 	catch (GradeTooLowException& exception)
 	{
-		std::cout << " couldn't sign because " << exception.what() << std::endl;
+		std::cout << a.getName() << " couldn't sign because " << exception.what() << std::endl;
 	}
 	catch (GradeWrongException& exception)
 	{
-		std::cout << " couldn't sign because " << exception.noGrade() << std::endl;
+		std::cout << a.getName() << " couldn't sign because " << exception.noGrade() << std::endl;
 	}
 }
 
@@ -118,28 +118,27 @@ void	AForm::execute(Bureaucrat const & executor) const
 {
 	try
 	{
-			std::cout << executor.getGrade() << " " << getGradeExec() << " " << getSign() << std::endl;
 		if (!getSign() || (int) executor.getGrade() > getGradeExec())
 			throw (GradeWrongException());
 		if (name == "PresidentialPardonForm")
 		{
 			PardonForm();
-			std::cout << " executed " << getName() << std::endl;
+			std::cout << executor.getName() << " executed " << getName() << std::endl;
 		}
 		else if (name == "ShrubberyCreationForm")
 		{
 			CreationForm();
-			std::cout << " executed " << getName() << std::endl;
+			std::cout << executor.getName() << " executed " << getName() << std::endl;
 		}
 		else if (name == "RobotomyRequestForm")
 		{
 			RequestForm();
-			std::cout << " executed " << getName() << std::endl;
+			std::cout << executor.getName() << " executed " << getName() << std::endl;
 		}
 	}
 	catch (GradeWrongException& exception)
 	{
-		std::cout << " cannot execute " << getName() << std::endl;
+		std::cout << executor.getName() << " cannot execute " << getName() << std::endl;
 	}
 }
 

@@ -1,26 +1,16 @@
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main(void)
 {
 	Bureaucrat	first("eheh", 3);
 	Bureaucrat	second("bruh", 57);
-	ShrubberyCreationForm A("bruh");
-	RobotomyRequestForm B("bruh");
-	PresidentialPardonForm C("eheh");
+	AForm				*ahah;
+	Intern			imIntern;
 
-	first.signForm(A);
-	first.signForm(B);
-	second.signForm(C);
-	first.executeForm(A);
-	first.executeForm(B);
-	first.executeForm(C);
+	ahah = imIntern.makeForm("robotomy request", "bruh");
+	first.signForm(*ahah);
 	while (second.getGrade() > 25)
 		second.upGrade();
-	second.signForm(C);
-	second.executeForm(A);
-	second.executeForm(B);
-	second.executeForm(C);
+	second.executeForm(*ahah);
 }

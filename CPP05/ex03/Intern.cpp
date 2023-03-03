@@ -15,14 +15,19 @@
 // Constructors
 Intern::Intern(void)
 {
+		std::cout << "Intern Constructor Called" << std::endl;
 }
-Intern::Intern(Intern const &rhs)
+
+Intern::Intern(Intern const &a)
 {
+		(void) a;
+		std::cout << "Intern Copy Constructor Called" << std::endl;
 }
 
 // Destructor
 Intern::~Intern(void)
 {
+		std::cout << "Intern Destructor Called" << std::endl;
 }
 
 // Getters
@@ -30,8 +35,9 @@ Intern::~Intern(void)
 // Setters
 
 // Operators
-Intern	&Intern::operator=(Intern const &rhs)
+Intern	&Intern::operator=(Intern const &a)
 {
+	(void) a;
 	return (*this);
 }
 
@@ -57,7 +63,7 @@ static AForm	*create_presidential(const std::string target)
 
 AForm	*Intern::makeForm(const std::string form_name, const std::string target)
 {
-	const std::string	name[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+	const std::string	name[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	AForm	*(*form[])(const std::string) = {&create_shrub, &create_robot, &create_presidential};
 
 	for (int i = 0; i < 3; i++)
@@ -67,5 +73,4 @@ AForm	*Intern::makeForm(const std::string form_name, const std::string target)
 	}
 	std::cout << "Intern cannot create " << form_name << " cause it's not a contract he knew" << std::endl;
 	return (NULL);
-
 }
