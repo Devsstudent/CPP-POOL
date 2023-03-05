@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <math.h>
+#include <limits>
 
 
 class  ScalarConverter {
