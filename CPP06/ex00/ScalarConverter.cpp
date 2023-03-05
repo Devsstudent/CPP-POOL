@@ -78,7 +78,7 @@ void	toChar(const std::string name)
 	}
 	if (is_int(name) || is_float(name) || is_double(name))
 	{
-		std::cout << static_cast<char>(is_int(name)) << std::endl;
+		std::cout << static_cast<char>(std::stoi(name)) << std::endl;
 		return ;
 	}
 	else
@@ -87,7 +87,7 @@ void	toChar(const std::string name)
 
 void	toInt(const std::string name)
 {
-
+	std::cout << static_cast<int>(std::stoi(name)) << std::endl;
 }
 
 static void  ScalarConverter::convert(const std::string name)
