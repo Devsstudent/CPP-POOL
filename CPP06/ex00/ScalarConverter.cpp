@@ -28,12 +28,21 @@ ScalarConverter::~ScalarConverter(void)
   //check -inf
   //check +inf
 
+unsigned int	get_index(std::string name)
+{
+	unsigned int	i;
+
+	i = 0;
+	for (std::string::iterator it = name.begin(); std::isdigit(*it); it++)
+		i++;
+	return (i);
+}
+
 bool	is_int(const std::string name)
 {
-	size_t	idx;
-	int		res;
+	unsigned int	idx;
 
-	res = std::stoi(name, &idx);
+	idx = get_index(name);
 	if (idx == name.length())
 		return (true);
 	return (false);
@@ -41,85 +50,96 @@ bool	is_int(const std::string name)
 
 bool	is_float(const std::string name)
 {
-	size_t	idx;
-	float	res;
+	bool						point;
+	unsigned int				i;
+	std::string::const_iterator	it;
 
-	res = stof(name, &idx);
-	if (name.c_str[idx] && name.c_str[idx] == 'f' && !name.c_str[idx + 1])
-		return (true);
-	return (false):
+	point = false;
+	i = 0;
+	while (it != name.end() && (std::isdigit(*it) || *it == '.' || *it == 'f'))
+	{
+		if (*it == '.' && !point)
+			point = true;
+		else if (*it == '.' && point)
+			return (false);
+		i++;
+	}
+	if (name[name.length() - 1] != 'f' || !point || i != name.length())
+		return (false);
+	return (true);
 }
 
 bool	is_double(const std::string name)
 {
-	size_t	idx;
-	double	res;
+	bool						point;
+	unsigned int				i;
+	std::string::const_iterator	it;
 
-	res = stod(name, &idx);
-	if (idx == name.length())
-		return (true);
-	return (false):
+	point = false;
+	i = 0;
+	while (it != name.end() && (std::isdigit(*it) || *it == '.'))
+	{
+		if (*it == '.' && !point)
+			point = true;
+		else if (*it == '.' && point)
+			return (false);
+		i++;
+	}
+	if (!point || i != name.length())
+		return (false);
+	return (true);
 }
 
 bool	is_char(const std::string name)
 {
-	if (is_int(name) || is_float(name) || is_double(name))
+	std::string::const_iterator it;
+	unsigned int				i;
+
+	i = 0;
+	while (it != name.end() && (std::isdigit(*it)))
+		i++;
+	if (i == name.length() || name.length() == 1)
 		return (true);
-	if (name.c_str().length == 1)
-		return (true);
+	return (false);
 }
 
 void	toChar(const std::string name)
 {
-	if (!is_char(name))
-	{
-		std::cout << "Impossible" << std::endl;
-		return ;
-	}
-	if (is_int(name) || is_float(name) || is_double(name))
-	{
-		std::cout << static_cast<char>(is_int(name)) << std::endl;
-		return ;
-	}
+	if (is_char(name))
+		std::cout << static_cast<char>(std::atoi(name.c_str())) << std::endl;
 	else
-		std::cout << static_cast<char>(name.c_str()[0]) << std::endl;
+		std::cout << "Impossible" << std::endl;
 }
 
 void	toInt(const std::string name)
 {
-	if (is_int(name) || is_float(name) || is_double(name))
-	{
-		std::cout << static_cast<int>(std::stoi(name))  << std::endl;
-	}
+	if (is_int(name))
+		std::cout << static_cast<int>(std::atoi(name.c_str()))  << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
 }
 
 void	toDouble(const std::string name)
 {
-	if (is_int(name) || is_float(name) || is_double(name))
-	{
-		std::cout << static_cast<double>(std::stod(name))  << std::endl;
-	}
+	if (is_double(name))
+		std::cout << static_cast<double>(std::atof(name.c_str()))  << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
 }
 
 void	toFloat(const std::string name)
 {
-	if (is_int(name) || is_float(name) || is_double(name))
-	{
-		std::cout << static_cast<float>(std::stof(name)) << "f"  << std::endl;
-	}
+	if (is_float(name))
+		std::cout << static_cast<float>(atof(name.c_str())) << "f"  << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
 }
 
-static void  ScalarConverter::convert(const std::string name)
+void  ScalarConverter::convert(const std::string name)
 {
 	std::cout << "char : ";
 	toChar(name);
-	std::cout << "int : "
+	std::cout << "int : ";
 	toInt(name);
 	std::cout << "float : ";
 	toFloat(name);
