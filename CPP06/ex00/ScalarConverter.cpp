@@ -33,7 +33,7 @@ bool	is_int(const std::string name)
 	size_t	idx;
 	int		res;
 
-	res = stoi(name, &idx);
+	res = std::stoi(name, &idx);
 	if (idx == name.length())
 		return (true);
 	return (false);
@@ -87,15 +87,44 @@ void	toChar(const std::string name)
 
 void	toInt(const std::string name)
 {
+	if (is_int(name) || is_float(name) || is_double(name))
+	{
+		std::cout << static_cast<int>(std::stoi(name))  << std::endl;
+	}
+	else
+		std::cout << "Impossible" << std::endl;
+}
 
+void	toDouble(const std::string name)
+{
+	if (is_int(name) || is_float(name) || is_double(name))
+	{
+		std::cout << static_cast<double>(std::stod(name))  << std::endl;
+	}
+	else
+		std::cout << "Impossible" << std::endl;
+}
+
+void	toFloat(const std::string name)
+{
+	if (is_int(name) || is_float(name) || is_double(name))
+	{
+		std::cout << static_cast<float>(std::stof(name)) << "f"  << std::endl;
+	}
+	else
+		std::cout << "Impossible" << std::endl;
 }
 
 static void  ScalarConverter::convert(const std::string name)
 {
-	std::cout << "char : " << toChar(name) << std::endl;
-	std::cout << "int : " << toInt(name) << std::endl;
-	std::cout << "float : " << toFloat(name) << std::endl;
-	std:: cout << "double : " << toDouble(name) << std::endl;
+	std::cout << "char : ";
+	toChar(name);
+	std::cout << "int : "
+	toInt(name);
+	std::cout << "float : ";
+	toFloat(name);
+	std::cout << "double : ";
+	toDouble(name);
   //convert  char
   //convert  int
   //convert  float
