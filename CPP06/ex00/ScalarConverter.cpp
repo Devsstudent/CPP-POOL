@@ -57,8 +57,9 @@ bool	is_float(const std::string name)
 		else if (*it == '.' && point)
 			return (false);
 		i++;
+		it++;
 	}
-	if (name[name.length() - 1] != 'f' || !point || i != name.length())
+	if (i != name.length())
 		return (false);
 	return (true);
 }
@@ -100,8 +101,9 @@ bool	is_double(const std::string name)
 		else if (*it == '.' && point)
 			return (false);
 		i++;
+		it++;
 	}
-	if (!point || i != name.length())
+	if (i != name.length())
 		return (false);
 	return (true);
 }
@@ -125,7 +127,7 @@ bool	is_char(const std::string name)
 
 void	toChar(const std::string name)
 {
-	if (is_char(name))
+	if (is_char(name) || is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<char>(std::atoi(name.c_str())) << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
@@ -138,7 +140,7 @@ void	toInt(const std::string name)
 	buff = static_cast<long>(std::atof(name.c_str()));
 	if (buff > 2147483647 || buff < -2147483648)
 		std::cout << "Impossible" << std::endl;
-	else if (is_int(name))
+	else if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<int>(std::atoi(name.c_str())) << std::endl;
 	else if (is_p_inf(name) || is_n_inf(name))
 		std::cout << "Impossible" << std::endl;
@@ -164,10 +166,12 @@ void	toDouble(const std::string name)
 
 void	toFloat(const std::string name)
 {
-	if (is_float(name))
+	if (is_int(name))
+		std::cout << static_cast<float>(atof(name.c_str())) << ".0f" << std::endl;
+	else if (is_float(name))
 		std::cout << static_cast<float>(atof(name.c_str())) << "f"  << std::endl;
 	else if (is_p_inf(name))
-		std::cout << "+" << std::numeric_limits<float>::infinity() << "f" << std::endl;
+		std::cout << "+" << std::numeric_limits<float>::infinity() << std::endl;
 	else if (is_n_inf(name))
 		std::cout << "-" << std::numeric_limits<float>::infinity() << std::endl;
 	else
