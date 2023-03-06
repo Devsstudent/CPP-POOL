@@ -127,7 +127,9 @@ bool	is_char(const std::string name)
 
 void	toChar(const std::string name)
 {
-	if (is_char(name) || is_int(name) || is_float(name) || is_double(name))
+	if (is_char(name))
+		std::cout << static_cast<char>(name.c_str()[0]) << std::endl;
+	else if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<char>(std::atoi(name.c_str())) << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
@@ -142,6 +144,8 @@ void	toInt(const std::string name)
 		std::cout << "Impossible" << std::endl;
 	else if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<int>(std::atoi(name.c_str())) << std::endl;
+	else if (is_char(name))
+		std::cout << static_cast<int>(name.c_str()[0]) << std::endl;
 	else if (is_p_inf(name) || is_n_inf(name))
 		std::cout << "Impossible" << std::endl;
 	else if (is_nan(name))
@@ -152,8 +156,12 @@ void	toInt(const std::string name)
 
 void	toDouble(const std::string name)
 {
-	if (is_double(name))
+	std::cout.precision(1);
+	std::cout.setf(std::ios::fixed);
+	if (is_double(name) || is_float(name) || is_int(name))
 		std::cout << static_cast<double>(std::atof(name.c_str()))  << std::endl;
+	else if (is_char(name))
+		std::cout << static_cast<double>(name.c_str()[0]) << std::endl;
 	else if (is_p_inf(name))
 		std::cout << "+" << std::numeric_limits<double>::infinity() << std::endl;
 	else if (is_n_inf(name))
@@ -166,10 +174,12 @@ void	toDouble(const std::string name)
 
 void	toFloat(const std::string name)
 {
-	if (is_int(name))
-		std::cout << static_cast<float>(atof(name.c_str())) << ".0f" << std::endl;
-	else if (is_float(name))
+	std::cout.precision(1);
+	std::cout.setf(std::ios::fixed);
+	if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<float>(atof(name.c_str())) << "f"  << std::endl;
+	else if (is_char(name))
+		std::cout << static_cast<float>(name.c_str()[0]) << "f" << std::endl;
 	else if (is_p_inf(name))
 		std::cout << "+" << std::numeric_limits<float>::infinity() << std::endl;
 	else if (is_n_inf(name))
