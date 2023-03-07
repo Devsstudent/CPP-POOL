@@ -90,13 +90,21 @@ void  ClapTrap::attack(const std::string &target)
   std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage !" << std::endl;
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(int amount)
 {
+  if (amount < 0)
+      std::cout << "ClapTrap " << name << " cannot take negative amount of damage" << std::endl;
+	std::cout << "ClapTrap " << name << " take " << amount << " damages" << std::endl;
   hit_point -= amount;
 }
 
-void  ClapTrap::beRepaired(unsigned int amount)
+void  ClapTrap::beRepaired(long amount)
 {
+  if (amount < 0)
+  {
+    std::cout << "ClapTrap " << name << " cannot repair cause wrong amount entred" << std::endl;
+    return ;
+  }
   if (energy_point <= 0)
   {
     std::cout << name << " cannot attack, no mana" << std::endl;

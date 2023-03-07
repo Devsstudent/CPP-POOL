@@ -10,7 +10,6 @@ class	FragTrap: public virtual ClapTrap{
 		FragTrap(const FragTrap &a);
 		FragTrap& operator=(const FragTrap &a);
 		~FragTrap(void);
-	private:
 		void	highFivesGuys(void);
 };
 

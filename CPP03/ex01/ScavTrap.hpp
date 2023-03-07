@@ -10,7 +10,6 @@ class	ScavTrap : public virtual ClapTrap{
 		ScavTrap& operator = (const ScavTrap &a);
 		~ScavTrap(void);
 		void	attack(const std::string &target);
-	private:
 		void	guardGate(void);
 };
 

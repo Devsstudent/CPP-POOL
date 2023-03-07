@@ -22,6 +22,7 @@ int	main(void)
 	Bob.takeDamage(Eli.getAttackDamage());
 	Eli.attack("Bob");
 	Bob.takeDamage(Eli.getAttackDamage());
+	Bob.guardGate();
 	Eli.beRepaired(100);
 	Eli.beRepaired(-100);
 	Eli.attack("Bob");

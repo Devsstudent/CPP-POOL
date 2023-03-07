@@ -5,21 +5,16 @@
 int	main(void)
 {
 	ScavTrap Bob("Bob");
-	ScavTrap Lea("Lea");
+	FragTrap Lea("Lea");
 	FragTrap Eli("Eli");
-	ScavTrap C;
+	FragTrap C;
 
 	C = Lea; 
 	Eli.attack("Macron");
 	Eli.attack("Macron");
 	Eli.attack("Macron");
-	Eli.attack("Macron");
-	Eli.attack("Macron");
-	Eli.attack("Macron");
-	Eli.attack("Macron");
-	Eli.attack("Macron");
-	Eli.attack("Macron");
 	Eli.attack("Bob");
+	Eli.highFivesGuys();
 	Bob.takeDamage(Eli.getAttackDamage());
 	Eli.attack("Bob");
 	Bob.takeDamage(Eli.getAttackDamage());

@@ -3,7 +3,7 @@
 # include <iostream>
 
 class    ClapTrap{
-    protected :
+    private :
       std::string  name;
       int          hit_point;
       int          energy_point;
@@ -23,8 +23,8 @@ class    ClapTrap{
 		void	setEnergyPoint(int value);
 		void	setHitPoint(int value);
       void  attack(const std::string& target);
-      void  takeDamage(unsigned int amount);
-      void  beRepaired(unsigned int amount);
+      void  takeDamage(int amount);
+      void  beRepaired(long amount);
 };
 
 #endif

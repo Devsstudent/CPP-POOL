@@ -21,11 +21,13 @@ int	main(void)
 	Eli.attack("Macron");
 	Eli.attack("Macron");
 	Eli.attack("Bob");
+	Eli.whoAmI();
 	Bob.takeDamage(Eli.getAttackDamage());
 	Eli.attack("Bob");
 	Bob.takeDamage(Eli.getAttackDamage());
 	Eli.beRepaired(100);
 	Eli.beRepaired(-100);
+	Eli.whoAmI();
 	Eli.attack("Bob");
 	Bob.takeDamage(Eli.getAttackDamage());
 	C.attack("Eli");

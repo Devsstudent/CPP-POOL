@@ -2,7 +2,7 @@ CC = c++
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -MMD
 OBJ = main.o ClapTrap.o ScavTrap.o FragTrap.o
 DD = $(OBJ:.o=.d)
-NAME = ClapTrap
+NAME = FragTrap
 
 all: $(NAME)
 
