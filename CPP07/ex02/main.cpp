@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Array.hpp"
-#include <stdlib.h>
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -49,6 +48,8 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
+    Array<int> test(23);
+	test = numbers;
     delete [] mirror;//
     return 0;
 }

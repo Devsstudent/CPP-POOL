@@ -2,6 +2,7 @@
 # define ARRAY_HPP
 
 # include <exception>
+# include <stdlib.h>
 
 template <class T>
 class	Array {
@@ -18,6 +19,13 @@ class	Array {
 		{
 			for (int i = 0; i < a.size(); i++)
 				arr[i] = a.arr[i];
+		};
+		Array	&operator = (const Array &a){
+			delete [] arr;
+			arr = new T[a.size()];
+			for (int i = 0; i < a.size(); i++)
+				arr[i] = a.arr[i];
+			return (*this);
 		};
 		~Array(void) {
 			delete[] arr;
