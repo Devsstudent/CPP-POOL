@@ -1,8 +1,8 @@
 CFLAGS = -Werror -Wall -Wextra -std=c++98 -g -MMD
 CC = c++
-OBJ = main.o
+OBJ = main.o Span.o
 DD = $(OBJ:.o=.d)
-NAME = easy_find
+NAME = Span
 
 all : $(NAME)
 
