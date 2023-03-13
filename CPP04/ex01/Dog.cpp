@@ -35,7 +35,7 @@ Dog::~Dog(void)
 		std::cout << "not brain" << std::endl;
 }
 
-Brain	*Dog::getBrain(void)
+Brain	*Dog::getBrain(void) const
 {
 	return (cerveaux);
 }

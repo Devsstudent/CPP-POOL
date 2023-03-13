@@ -2,7 +2,7 @@
 
 WrongCat::WrongCat(void)
 {
-	setType("Cat");
+	setType("WrongCat");
 	std::cout << "A cat has been constructed" << std::endl;
 }
 

@@ -1,4 +1,4 @@
-CFLAGS = -Werror -Wall -Wextra -std=c++98 -g -MMD
+CFLAGS = -Werror -Wall -Wextra -g -MMD
 CC = c++
 OBJ = main.o MutantStack.o
 DD = $(OBJ:.o=.d)

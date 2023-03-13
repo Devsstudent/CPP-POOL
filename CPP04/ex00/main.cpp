@@ -6,6 +6,7 @@
 
 int	main(void)
 {
+	Animal	hey;
 	const WrongAnimal* meta = new WrongAnimal();
 	const Animal* j = new Dog();
 	const WrongAnimal* i = new WrongCat();
@@ -14,5 +15,8 @@ int	main(void)
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+	delete j;
+	delete i;
+	delete meta;
 	return 0;
 }
