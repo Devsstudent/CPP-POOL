@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:55:53 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/13 16:47:41 by odessein         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:38:07 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class MutantStack : public std::stack<T>
 		};
 		MutantStack(MutantStack const &rhs)
 		{
-			(void) rhs;
+			*this = rhs;
 			std::cout << "MutanStack constructor by copy called" << std::endl;
 		};
 	 // Destructor
@@ -47,7 +47,7 @@ class MutantStack : public std::stack<T>
 
 	// Operators
 		MutantStack	&operator=(MutantStack const &rhs){
-			(void) rhs;
+			*this = rhs;
 			return (*this);
 	}
 	typedef typename Container::iterator iterator;

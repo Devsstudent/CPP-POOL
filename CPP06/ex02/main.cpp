@@ -10,6 +10,6 @@ int	main(void)
 	Bruh = AA.generate();
 	AA.identify(Bruh);
 	Base &h = test;
-	AA.identify();
+	AA.identify(h);
 	delete Bruh;
 }

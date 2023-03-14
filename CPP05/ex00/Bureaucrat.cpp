@@ -24,9 +24,9 @@ void	Bureaucrat::setGrade(long _grade)
 	try
 	{
 		if (_grade >= 150)
-			throw (GradeTooHighException());
-		else if (_grade <= 0)
 			throw (GradeTooLowException());
+		else if (_grade <= 0)
+			throw (GradeTooHighException());
 		else
 			grade = _grade;
 	}
