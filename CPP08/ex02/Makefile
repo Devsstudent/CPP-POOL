@@ -1,6 +1,6 @@
 CFLAGS = -Werror -Wall -Wextra -g -MMD
 CC = c++
-OBJ = main.o MutantStack.o
+OBJ = main.o
 DD = $(OBJ:.o=.d)
 NAME = mutated_abomination
 

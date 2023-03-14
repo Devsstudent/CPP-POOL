@@ -18,19 +18,6 @@
 # include <iostream>
 
 template <class T, class Container = std::deque<T>>
-class	iterator : public std::stack<T, Container>
-{
-	using std::stack<T, Container>::c;
-
-	public :
-		auto begin() {return std::begin(c);}
-		auto end() {return std::end(c);}
-		
-		auto begin() const {return std::begin(c);}
-		auto end() const {return std::end(c);}
-};
-
-template <class T, class Container = std::deque<T>>
 class MutantStack : public std::stack<T>
 {
 	private:
@@ -39,19 +26,33 @@ class MutantStack : public std::stack<T>
 
 	public:
 	// Constructors
-		MutantStack<T>(void);
-		MutantStack(MutantStack const &rhs);
-
-	// Destructor
-		~MutantStack(void);
+		MutantStack<T>(void)
+		{
+			std::cout << "MutanStack constructor called" << std::endl;
+		};
+		MutantStack(MutantStack const &rhs)
+		{
+			(void) rhs;
+			std::cout << "MutanStack constructor by copy called" << std::endl;
+		};
+	 // Destructor
+		~MutantStack(void)
+		{
+			std::cout << "MutanStack Desctructor Called" << std::endl;
+		};
 
 	// Getters
 
 	// Setters
 
 	// Operators
-		MutantStack	&operator=(MutantStack const &rhs);
-
+		MutantStack	&operator=(MutantStack const &rhs){
+			(void) rhs;
+			return (*this);
+	}
+	typedef typename Container::iterator iterator;
+	iterator begin() {return this->c.begin();}
+	iterator end() {return this->c.end();}
 	// Methods
 };
 
