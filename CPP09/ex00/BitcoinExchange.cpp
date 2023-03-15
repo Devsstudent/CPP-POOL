@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:49:26 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/15 15:24:15 by odessein         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:40:04 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	BitcoinExchange::check_line(const std::string	&str)
 	int	idx;
 
 	idx = str.find_first_of("|");
-	if (idx == std::string::npos)
+	if (static_cast<size_t>(idx) == std::string::npos)
 	{
 		std::cout << "Error: bad input => " << str << std::endl;
 		return ;

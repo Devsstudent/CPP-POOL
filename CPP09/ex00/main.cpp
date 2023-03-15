@@ -3,15 +3,11 @@
  
 std::string trim(const std::string &s)
 {
-	auto start = s.begin();
-	while (start != s.end() && std::isspace(*start)) {
-		start++;
-	}
-	auto end = s.end();
-	do {
-		end--;
-	} while (std::distance(start, end) > 0 && std::isspace(*end));
-	return std::string(start, end + 1);
+	std::string	res;
+
+	res = s;
+	std::remove(res.begin(), res.end(), ' ');
+	return (res);
 }
 void	fill_arr(long arr[3], std::string date)
 {
@@ -90,11 +86,10 @@ bool	fill_map_from_csv(std::multimap<std::string, double> &info)
 		return (false);
 	while (std::getline(data, str))
 	{
-		int		arr[3];
 		idx = str.find_first_of(",");
 		date = str.substr(0, idx);
 		value = atof(str.substr(idx + 1).c_str());
-		info.insert({date, value});
+		info.insert(std::pair<std::string, double>(date, value));
 	}
 	return (true);
 }

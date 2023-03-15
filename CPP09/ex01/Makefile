@@ -1,8 +1,8 @@
 CFLAGS = -Werror -Wall -Wextra -std=c++98 -g -MMD
 CC = c++
-OBJ = main.o BitcoinExchange.o
+OBJ = main.o RPN.o
 DD = $(OBJ:.o=.d)
-NAME = btc
+NAME = RPN
 
 all : $(NAME)
 
