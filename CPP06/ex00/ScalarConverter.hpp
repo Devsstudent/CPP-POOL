@@ -7,8 +7,9 @@
 
 
 class  ScalarConverter {
-    public:
+	private:
        ScalarConverter(void);
+    public:
        ScalarConverter(const ScalarConverter &a);
        ScalarConverter & operator = (const ScalarConverter &a);
        ~ScalarConverter(void);

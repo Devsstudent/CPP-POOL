@@ -12,8 +12,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &a)
 
 ScalarConverter &ScalarConverter::operator = (const ScalarConverter &a)
 {
-  (void) a;
-  return (*this);
+  (void) a; return (*this);
 }
 
 ScalarConverter::~ScalarConverter(void)
@@ -113,7 +112,7 @@ bool	is_char(const std::string name)
 	unsigned int				i;
 
 	i = 0;
-	if (name.length() == 1)
+	if (name.length() == 1 && !isdigit(name.c_str()[0]))
 		return (true);
 	return (false);
 }
@@ -125,7 +124,7 @@ void	toChar(const std::string name)
 	else if (is_int(name) || is_float(name) || is_double(name))
 	{
 		if ((static_cast<long long>(std::atof(name.c_str())) > 32 && static_cast<long>(std::atof(name.c_str())) < 126) && (static_cast<long>(std::atof(name.c_str()) < 2147483647 && static_cast<long>(std::atof(name.c_str())) > -2147483648)))
-		std::cout << static_cast<char>(std::atoi(name.c_str())) << std::endl;
+			std::cout << static_cast<char>(std::atoi(name.c_str())) << std::endl;
 		else
 			std::cout << "Non displayable" << std::endl;
 	}
@@ -143,7 +142,7 @@ void	toInt(const std::string name)
 	else if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<int>(std::atoi(name.c_str())) << std::endl;
 	else if (is_char(name))
-		std::cout << "Impossible" << std::endl;
+		std::cout << static_cast<int>(name.c_str()[0]) << std::endl;
 	else if (is_p_inf(name) || is_n_inf(name))
 		std::cout << "Impossible" << std::endl;
 	else if (is_nan(name))
@@ -159,7 +158,7 @@ void	toDouble(const std::string name)
 	if (is_double(name) || is_float(name) || is_int(name))
 		std::cout << static_cast<double>(std::atof(name.c_str()))  << std::endl;
 	else if (is_char(name))
-		std::cout << "Impossible" << std::endl;
+		std::cout << static_cast<double>(name.c_str()[0]) << std::endl;
 	else if (is_p_inf(name))
 		std::cout << "+" << std::numeric_limits<double>::infinity() << std::endl;
 	else if (is_n_inf(name))
@@ -177,7 +176,7 @@ void	toFloat(const std::string name)
 	if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<float>(atof(name.c_str())) << "f"  << std::endl;
 	else if (is_char(name))
-		std::cout << "Impossible" << std::endl;
+		std::cout << static_cast<float>(name.c_str()[0]) << std::endl;
 	else if (is_p_inf(name))
 		std::cout << "+" << std::numeric_limits<float>::infinity() << std::endl;
 	else if (is_n_inf(name))
