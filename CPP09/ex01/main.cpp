@@ -1,10 +1,44 @@
 #include "RPN.hpp"
 
-void	operand_on_stack(std::deque<long> &stack, type ope)
+bool	operand_on_stack(std::deque<long> &stack, type ope)
 {
-	(void) stack;
-	(void) ope;
-	
+	long	buff;
+
+	if (stack.size() < 2)
+		return (false);
+	if (ope == ADD)
+	{
+		buff = stack.front();
+		stack.pop_front();
+		buff = stack.front() + buff;
+		stack.pop_front();
+		stack.push_front(buff);
+	}
+	else if (ope == SUB)
+	{
+		buff = stack.front();
+		stack.pop_front();
+		buff = stack.front() - buff;
+		stack.pop_front();
+		stack.push_front(buff);
+	}
+	else if (ope == MULT)
+	{
+		buff = stack.front();
+		stack.pop_front();
+		buff = stack.front() * buff;
+		stack.pop_front();
+		stack.push_front(buff);
+	}
+	else if (ope == DIV)
+	{
+		buff = stack.front();
+		stack.pop_front();
+		buff = stack.front() / buff;
+		stack.pop_front();
+		stack.push_front(buff);
+	}
+	return (true);
 }
 
 bool	check_space(std::string::iterator it, std::string str)
@@ -19,6 +53,7 @@ bool	check_space(std::string::iterator it, std::string str)
 bool	check_input(std::string &str)
 {
 	int	i;
+
 	i = 0;
 	if (*(str.begin()) == ' ' || (*(str.end() - 1) == ' '))
 		return (false);
@@ -64,17 +99,17 @@ int	main(int ac, char **av)
 	str = strtok(av[1], " ");
 	while (str)
 	{
-		if (str[0] == '+')
-			operand_on_stack(stack, ADD);
-		else if (str[0] == '-')
-			operand_on_stack(stack, SUB);
-		else if (str[0] == '/')
-			operand_on_stack(stack, DIV);
-		else if (str[0] == '*')
-			operand_on_stack(stack, MULT);
-		else
+		if (str[0] == '+' && !operand_on_stack(stack, ADD))
+			std::cerr << "Wrong input" << std::endl;
+		if (str[0] == '-' && !operand_on_stack(stack, SUB))
+			std::cerr << "Wrong input" << std::endl;
+		if (str[0] == '/' && !operand_on_stack(stack, DIV))
+			std::cerr << "Wrong input" << std::endl;
+		if (str[0] == '*' && !operand_on_stack(stack, MULT))
+			std::cerr << "Wrong input" << std::endl;
+		if (str[0] != '+' && str[0] != '-' && str[0] != '/' && str[0] != '*')
 			stack.push_front(atol(str));
-		std::cout << str << std::endl;
 		str = strtok(NULL, " ");
 	}
+	std::cout << "Res : " << stack.front() << std::endl;
 }
