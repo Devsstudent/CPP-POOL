@@ -16,15 +16,19 @@
 # include <deque>
 # include <string>
 # include <iostream>
+# include <cstring>
+# include <stdlib.h>
+
+typedef enum e_type
+{
+	ADD,
+	SUB,
+	MULT,
+	DIV
+}	type;
 
 class RPN
 {
-	private:
-	// Attributes
-		
-
-	// Forbidden
-
 	public:
 	// Constructors
 		RPN(void);

@@ -18,6 +18,7 @@ RPN::RPN(void)
 }
 RPN::RPN(RPN const &rhs)
 {
+	(void) rhs;
 }
 
 // Destructor
@@ -32,7 +33,9 @@ RPN::~RPN(void)
 // Operators
 RPN	&RPN::operator=(RPN const &rhs)
 {
+	(void) rhs;
 	return (*this);
 }
 
 // Methods
+
