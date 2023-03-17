@@ -3,7 +3,7 @@
 bool	add_to_vec(int ac, char **av, std::vector<int> &vec)
 {
 	int			i = 1;
-	long int	buff;
+	long int	buff_val;
 
 	while (i < ac)
 	{
@@ -11,10 +11,10 @@ bool	add_to_vec(int ac, char **av, std::vector<int> &vec)
 		if (buff.length() > 11)
 			return (false);
 		else
-			buff = atol(av[i]);
-		if (buff > 2147483647 || buff < -2147483648)
+			buff_val = atol(av[i]);
+		if (buff_val > 2147483647 || buff_val < -2147483648)
 			return (false);
-		vec.insert(buff);
+		vec.push_back(buff_val);
 		i++;
 	}
 	return (true);
@@ -49,6 +49,15 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
-	std::vector<int> vec;
-	add_to_vec(ac, av, vec);
+	std::vector<int>	vec;
+	PmergeMe	a;
+	std::clock_t start = std::clock();
+	if (!add_to_vec(ac, av, vec))
+		std::cerr << "Wrong input" << std::endl;
+	std::clock_t end = std::clock();
+	std::cout << (double) ((double) ((double) end / (double) CLOCKS_PER_SEC * 1000) - (double)(( start / (double) CLOCKS_PER_SEC) * 1000)) << " us" << std::endl;
+/*
+	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+		std::cout << *it << std::endl;
+*/
 }

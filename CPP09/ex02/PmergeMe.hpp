@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:27:52 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/16 15:30:31 by odessein         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:29:25 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <iostream>
 # include <climits>
 # include <stdlib.h>
+# include <ctime>
+# include <cmath>
 
 class PmergeMe
 {
