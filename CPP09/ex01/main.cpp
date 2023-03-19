@@ -59,19 +59,19 @@ bool	check_input(std::string &str)
 		return (false);
 	for (std::string::iterator it = str.begin(); it < str.end(); it++)
 	{
-		if (!isdigit(*it) && *it != ' ' && *it != '+' && *it != '-' && *it != '/' && *it != '*')
+		if (!isdigit(*it) && *it != ' ' && *it != '+' && (*it != '-') && *it != '/' && *it != '*')
 				return (false);
 		if (*it == '+' && !check_space(it, str))
 			return (false);
-		if (*it == '-' && !check_space(it, str))
+		if ((*it == '-' && !*(it + 1)) && !check_space(it, str))
 			return (false);
 		if (*it == '/' && !check_space(it, str))
 			return (false);
 		if (*it == '*' && !check_space(it, str))
 			return (false);
-		if (isdigit(*it))
+		if (isdigit(*it) || (*it == '-' && isdigit(*(it + 1))))
 		{
-			if ((i > 1 && *it != '0') || i > 2)
+			if (i > 1)
 				return (false);
 			i++;
 		}
@@ -88,7 +88,10 @@ int	main(int ac, char **av)
 	std::deque<long> stack;
 	std::string	arg;
 	if (ac > 2 || ac <= 1)
+	{
+		std::cerr << "Wrong argument number" << std::endl;
 		return 1;
+	}
 	arg = av[1];
 	if (!check_input(arg))
 	{
@@ -100,14 +103,26 @@ int	main(int ac, char **av)
 	while (str)
 	{
 		if (str[0] == '+' && !operand_on_stack(stack, ADD))
+		{
 			std::cerr << "Wrong input" << std::endl;
-		if (str[0] == '-' && !operand_on_stack(stack, SUB))
+			return 3;
+		}
+		if (str[0] == '-' && !str[1] && !operand_on_stack(stack, SUB))
+		{
 			std::cerr << "Wrong input" << std::endl;
+			return 3;
+		}
 		if (str[0] == '/' && !operand_on_stack(stack, DIV))
+		{
 			std::cerr << "Wrong input" << std::endl;
+			return 3;
+		}
 		if (str[0] == '*' && !operand_on_stack(stack, MULT))
+		{
 			std::cerr << "Wrong input" << std::endl;
-		if (str[0] != '+' && str[0] != '-' && str[0] != '/' && str[0] != '*')
+			return 3;
+		}
+		if ((str[0] == '-' && isdigit(str[1])) || (str[0] != '+' && str[0] != '/' && str[0] != '*'))
 			stack.push_front(atol(str));
 		str = strtok(NULL, " ");
 	}
