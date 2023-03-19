@@ -1,4 +1,4 @@
-CFLAGS = -Werror -Wall -Wextra -std=c++98 -g -MMD
+CFLAGS = -Werror -Wall -Wextra -std=c++98 -g -MMD # -fsanitize=address
 CC = c++
 OBJ = main.o PmergeMe.o
 DD = $(OBJ:.o=.d)
