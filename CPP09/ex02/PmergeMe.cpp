@@ -64,3 +64,22 @@ std::vector<int>::iterator PmergeMe::GetPos(std::vector<int> &vec)
 	}
 	return (pos);
 }
+std::deque<int>::iterator PmergeMe::GetPos(std::deque<int> &vec)
+{
+	std::vector<long long unsigned>::iterator it = jacob.begin();
+	std::vector<long long unsigned>::iterator find_res;
+	std::deque<int>::iterator pos;
+	int	buff = -1;
+
+	pos = vec.end();
+	for (std::deque<int>::iterator it2 = vec.begin(); it2 != vec.end(); it2++)
+	{
+		find_res = find(it, jacob.end(), *it2);
+		if (find_res != jacob.end() && (buff == -1 || (buff != -1 && buff < find_res - it)))
+		{
+			buff = find_res - it;
+			pos = it2;
+		}
+	}
+	return (pos);
+}
