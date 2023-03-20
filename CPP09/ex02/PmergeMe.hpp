@@ -24,7 +24,7 @@
 class PmergeMe
 {
 	private:
-		const	std::vector<long long unsigned>	jacob;
+		std::vector<long long unsigned>	jacob;
 	// Attributes
 
 	// Forbidden
@@ -45,7 +45,7 @@ class PmergeMe
 		PmergeMe	&operator=(PmergeMe const &rhs);
 
 	// Methods
-	std::vector::iterator getJacobMostInterssante(std::vector<int> &vec);
+	std::vector<int>::iterator GetPos(std::vector<int> &vec);
 };
 
 #endif

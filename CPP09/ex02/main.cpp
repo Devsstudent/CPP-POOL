@@ -50,35 +50,10 @@ static void sort_pair(std::vector<std::pair<int, int> > &vec)
 	}
 }
 
-//recursivly :
-	//get the vector
-	//check that is lenght is not 1;
-	//get the middle
-	//recall the fucntion from start - middle : mean left
-	//reall the function from middle - end : mean right
-
-	//Merge
-
-
-/*
-static	std::vector<std::pair<int, int> > get_half_sorted_vec(std::vector<std::pair<int, int> > &vec)
-{
-	std::vector<std::pair<int ,int> > new_arr;
-
-	new_arr = merge_sort(vec, 0, vec.size());
-}
-*/
-
-
-//Map des nombres de jacobsthal avec en value leurs index
-
-//
-//Start a 0 size 
-
 int	binarySearch(std::vector<std::pair<int, int> > &vec, int value, int L, int R)
 {
-	if (abs(L - R) == 1)
-		return (L + 1);
+	if (abs(L - R) <= 1)
+		return (L);
 	int	mid = (L + R) / 2;
 	if (value > vec[mid].first)
 		return (binarySearch(vec, value, mid + 1, R));
@@ -86,54 +61,96 @@ int	binarySearch(std::vector<std::pair<int, int> > &vec, int value, int L, int R
 		return (binarySearch(vec, value, L, mid));
 }
 
+void	insertToVec(std::vector<std::pair<int, int> > &vec, int value, int index)
+{
+	std::pair<int, int>	pair;
 
-//insert function : create a pair to insert, checking the position to know before or after the index
+	pair.first = value;
+	pair.second = -1;
+	if (value > vec[index].first)
+	{
+		if (vec.begin() + index < vec.end())
+			vec.insert(vec.begin() + index + 1, pair);
+		else
+			vec.insert(vec.begin() + index, pair);
+	}
+	else
+		vec.insert(vec.begin() + index, pair);
+
+}
 
 void	binaryInsertSort(std::vector<std::pair<int, int> > &vec, std::vector<int> &toInsert)
 {
-	std::vector<int>::iterator it = toInsert.begin();
 	std::vector<int>::iterator elem;
+	int	index;
 	PmergeMe	jacob;
-	//Search dans la map la value la plus interessante selon Jacob // sauf pour la premiere xD
-	//On lance la binary search avec cette value
-	//On check value >= a value at vec.begin() + index if yes insert at index + 1 else insert at index
 	while (!toInsert.empty())
 	{
-		elem = jacob.getJacobMostInteressante(toInsert);
+		elem = jacob.GetPos(toInsert);
 		if (elem != toInsert.end())
 		{
-			//check le res de ca pour savoir ou on insert
-			binarySearch(vec, *elem, 0, vec.size());
+			index = binarySearch(vec, *elem, 0, vec.size());
+			insertToVec(vec, *elem, index);
 			toInsert.erase(elem);
 		}
 		else
 		{
-			binarySearch(vec, toInsert.begin(), 0, vec.size());
+			index = binarySearch(vec, *(toInsert.begin()), 0, vec.size());
+			insertToVec(vec, *(toInsert.begin()), index);
 			toInsert.erase(toInsert.begin());
 		}
-		//Se
 	}
+}
+
+
+std::vector<int>	createFromPair(std::vector<std::pair<int, int> > &vec)
+{
+	std::vector<int>	res;
+	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
+	{
+		if (it->second != -1)
+			res.push_back(it->second);
+	}
+	return (res);
+}
+
+static	void display_vec(std::vector<std::pair<int, int> > &vec)
+{
+	std::cout << "Before : ";
+	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
+	{
+		std::cout << it->first << " ";
+		if (it->second != -1)
+			std::cout << it->second << " ";
+	}
+	std::cout << std::endl;
+}
+
+static	void display_after_vec(std::vector<std::pair<int, int> > &vec)
+{
+	std::cout << "After : ";
+	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
+		std::cout << it->first << " ";
+	std::cout << std::endl;
 }
 
 static void	sort_by_vect(int ac, char **av)
 {
 	std::vector<std::pair<int, int> >	vec;
-	//std::clock_t start = std::clock();
 
 	if (!add_to_vec(ac, av, vec))
+	{
 		std::cerr << "Wrong input" << std::endl;
-	//std::clock_t end = std::clock();
+		return ;
+	}
+
+	display_vec(vec);
+
 	sort_pair(vec);
 	std::sort(vec.begin(), vec.end());
-	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
-		std::cout << it->first << " " << it->second << std::endl;
-	//binaryInsertSort(vec);
-	//Then i have to 
-	//std::cout << (double) ((double) ((double) end / (double) CLOCKS_PER_SEC * 1000) - (double)(( start / (double) CLOCKS_PER_SEC) * 1000)) << " us" << std::endl;
-	std::cout << "HEYY" << std::endl;
-	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
-		std::cout << it->first << " " << it->second << std::endl;
-	//std::vector<std::pair<int, int> > final_vec = get_half_sorted_vec(vec);
+	std::vector<int> second_vec = createFromPair(vec);
+	binaryInsertSort(vec, second_vec);
+	display_after_vec(vec);
 }
 
 int	main(int ac, char **av)
@@ -141,7 +158,6 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return 1;
 	int	i = 1;
-	//Checking basic parsing
 	while (i < ac)
 	{
 		std::string	buff = av[i];
@@ -155,5 +171,12 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
+	std::clock_t start = std::clock();
 	sort_by_vect(ac, av);
+	std::clock_t end = std::clock();
+	std::cout << "Time to preocess a range of " << i - 1 << " elements with std::vector : " << (double) ((double) ((double) end / (double) CLOCKS_PER_SEC * 1000) - (double)(( start / (double) CLOCKS_PER_SEC) * 1000)) << " us" << std::endl;
+	start = std::clock();
+	sort_by_vect(ac, av);
+	end = std::clock();
+	std::cout << "Time to preocess a range of " << i - 1 << " elements with std::vector : " << (double) ((double) ((double) end / (double) CLOCKS_PER_SEC * 1000) - (double)(( start / (double) CLOCKS_PER_SEC) * 1000)) << " us" << std::endl;
 }

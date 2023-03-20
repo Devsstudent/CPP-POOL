@@ -1,6 +1,6 @@
 #include "RPN.hpp"
 
-bool	operand_on_stack(std::deque<long> &stack, type ope)
+bool	operand_on_stack(std::stack<long> &stack, type ope)
 {
 	long	buff;
 
@@ -8,35 +8,36 @@ bool	operand_on_stack(std::deque<long> &stack, type ope)
 		return (false);
 	if (ope == ADD)
 	{
-		buff = stack.front();
-		stack.pop_front();
-		buff = stack.front() + buff;
-		stack.pop_front();
-		stack.push_front(buff);
+		buff = stack.top();
+		stack.pop();
+		buff = stack.top() + buff;
+		stack.pop();
+		stack.push(buff);
 	}
 	else if (ope == SUB)
 	{
-		buff = stack.front();
-		stack.pop_front();
-		buff = stack.front() - buff;
-		stack.pop_front();
-		stack.push_front(buff);
+		buff = stack.top();
+		stack.pop();
+		buff = stack.top() - buff;
+		stack.pop();
+		stack.push(buff);
 	}
 	else if (ope == MULT)
 	{
-		buff = stack.front();
-		stack.pop_front();
-		buff = stack.front() * buff;
-		stack.pop_front();
-		stack.push_front(buff);
+		buff = stack.top();
+		std::cout << buff;
+		stack.pop();
+		buff = stack.top() * buff;
+		stack.pop();
+		stack.push(buff);
 	}
 	else if (ope == DIV)
 	{
-		buff = stack.front();
-		stack.pop_front();
-		buff = stack.front() / buff;
-		stack.pop_front();
-		stack.push_front(buff);
+		buff = stack.top();
+		stack.pop();
+		buff = stack.top() / buff;
+		stack.pop();
+		stack.push(buff);
 	}
 	return (true);
 }
@@ -85,7 +86,7 @@ bool	check_input(std::string &str)
 
 int	main(int ac, char **av)
 {
-	std::deque<long> stack;
+	std::stack<long> stack;
 	std::string	arg;
 	if (ac > 2 || ac <= 1)
 	{
@@ -122,9 +123,12 @@ int	main(int ac, char **av)
 			std::cerr << "Wrong input" << std::endl;
 			return 3;
 		}
-		if ((str[0] == '-' && isdigit(str[1])) || (str[0] != '+' && str[0] != '/' && str[0] != '*'))
-			stack.push_front(atol(str));
+		if ((str[0] == '-' && isdigit(str[1])) || (str[0] != '+' && str[0] != '/' && str[0] != '*' && str[0] != '-'))
+		{
+			std::cout << "STD" << str <<std::endl;
+			stack.push(atol(str));
+		}
 		str = strtok(NULL, " ");
 	}
-	std::cout << "Res : " << stack.front() << std::endl;
+	std::cout << "Res : " << stack.top() << std::endl;
 }
