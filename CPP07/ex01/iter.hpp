@@ -6,7 +6,7 @@
 
 template<class T> void	iter(T arr[],
 long size,
-void func(T &))
+void func(T const &))
 {
 	if (size <= 0)
 		return ;
