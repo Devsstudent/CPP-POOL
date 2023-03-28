@@ -45,7 +45,7 @@ bool	check_date(std::string	date)
 		size++;
 	}
 	fill_arr(buff, date);
-	if (buff[0] > 2023 || buff[0] < 0)
+	if (buff[0] < 0)
 		return (false);
 	if (buff[1] > 12 || buff[1] < 0)
 		return (false);
@@ -100,6 +100,11 @@ std::multimap<std::string, double>::iterator closest_date(std::string date, std:
 	std::multimap<std::string, double>::iterator	buff;
 
 	std::multimap<std::string, double>::iterator it = db.begin();
+	std::multimap<std::string, double>::iterator ite = --db.end();
+	if (atoi(date.substr(0, 4).c_str()) < 2009 || (atoi(date.substr(0, 4).c_str()) == 2009 && atoi(date.substr(8).c_str()) < 2))
+		return it;
+	else if (atoi(date.substr(0, 4).c_str()) > 2022 || (atoi(date.substr(0, 4).c_str()) == 2022 && atoi(date.substr(5, 2).c_str()) > 3) || (atoi(date.substr(0, 4).c_str()) ==     2022 && atoi(date.substr(5, 2).c_str()) == 3 && atoi(date.substr(8).c_str()) > 29))
+		return (--ite);
 	for (; it != db.end(); it++)
 	{
 		if (it->first.substr(0, 7) == date.substr(0, 7))
@@ -119,8 +124,7 @@ int	main(int ac, char **av)
 		return (1);
 	std::multimap<std::string, double>	info;
 	std::ifstream	input;
-	input.open(av[1]);
-	if (input.bad())
+	input.open(av[1]); if (input.bad())
 	{
 		std::cerr << "Cannot open argument files" << std::endl;
 		return (2);

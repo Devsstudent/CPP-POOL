@@ -25,7 +25,6 @@ bool	operand_on_stack(std::stack<long> &stack, type ope)
 	else if (ope == MULT)
 	{
 		buff = stack.top();
-		std::cout << buff;
 		stack.pop();
 		buff = stack.top() * buff;
 		stack.pop();
@@ -124,10 +123,7 @@ int	main(int ac, char **av)
 			return 3;
 		}
 		if ((str[0] == '-' && isdigit(str[1])) || (str[0] != '+' && str[0] != '/' && str[0] != '*' && str[0] != '-'))
-		{
-			std::cout << "STD" << str <<std::endl;
 			stack.push(atol(str));
-		}
 		str = strtok(NULL, " ");
 	}
 	std::cout << "Res : " << stack.top() << std::endl;
