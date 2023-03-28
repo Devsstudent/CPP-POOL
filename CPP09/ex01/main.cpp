@@ -34,6 +34,11 @@ bool	operand_on_stack(std::stack<long> &stack, type ope)
 	{
 		buff = stack.top();
 		stack.pop();
+		if (buff == 0)
+		{
+			std::cerr << "Cannot divide by 0 :/" << std::endl;
+			return (false);
+		}
 		buff = stack.top() / buff;
 		stack.pop();
 		stack.push(buff);
@@ -59,7 +64,7 @@ bool	check_input(std::string &str)
 		return (false);
 	for (std::string::iterator it = str.begin(); it < str.end(); it++)
 	{
-		if (!isdigit(*it) && *it != ' ' && *it != '+' && (*it != '-') && *it != '/' && *it != '*')
+		if ((isdigit(*it) && isdigit(*(it + 1))) || (!isdigit(*it) && *it != ' ' && *it != '+' && (*it != '-') && *it != '/' && *it != '*'))
 				return (false);
 		if (*it == '+' && !check_space(it, str))
 			return (false);
