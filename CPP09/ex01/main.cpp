@@ -131,5 +131,10 @@ int	main(int ac, char **av)
 			stack.push(atol(str));
 		str = strtok(NULL, " ");
 	}
+	if (stack.size() >= 2)
+	{
+			std::cerr << "Wrong input" << std::endl;
+			return 3;
+	}
 	std::cout << "Res : " << stack.top() << std::endl;
 }
