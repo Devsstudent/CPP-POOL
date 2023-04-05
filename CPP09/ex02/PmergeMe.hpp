@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:27:52 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/17 17:11:11 by odessein         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:50:24 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ template <class T> int	binarySearch(T &a, int value, int L, int R)
 {
 	if (abs(L - R) <= 1)
 		return (L);
-	int	mid = (L + R) / 2;
+	int	mid = (L + R) / 2 - 1;
 	if (value > a[mid].first)
 		return (binarySearch(a, value, mid + 1, R));
 	else
@@ -137,6 +137,7 @@ template <class T> void	insert(T &a, int value, int index)
 
 	pair.first = value;
 	pair.second = -1;
+
 	if (value > a[index].first)
 	{
 		if (a.begin() + index < a.end())

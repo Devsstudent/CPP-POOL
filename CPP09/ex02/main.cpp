@@ -36,7 +36,6 @@ static void	sort_by_deque(int ac, char **av)
 	std::sort(queue.begin(), queue.end());
 	std::deque<int> second_queue = createFromPair(queue);
 	binaryInsertSort(queue, second_queue);
-	display_after(queue);
 }
 
 static void	sort_by_vect(int ac, char **av)
