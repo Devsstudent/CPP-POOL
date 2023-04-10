@@ -18,7 +18,7 @@ Character::Character(const Character &a)
 {
 	_name = a._name;
 	for (int i = 0; i < 4; i++)
-		inventory[i] = a.inventory[i];
+		inventory[i] = a.inventory[i]->clone();
 	std::cout << "Character Copy Constructor Called" << std::endl;
 }
 
@@ -26,7 +26,12 @@ Character &Character::operator = (const Character &a)
 {
 	_name = a._name;
 	for (int i = 0; i < 4; i++)
-		inventory[i] = a.inventory[i];
+	{
+		if (inventory[i])
+			delete (inventory[i]);
+	}
+	for (int i = 0; i < 4; i++)
+		inventory[i] = a.inventory[i]->clone();
 	return (*this);
 }
 
@@ -66,6 +71,9 @@ void	Character::unequip(int idx)
 void	Character::use(int idx, ICharacter &target)
 {
 	if ((idx < 0 || idx > 3) || !inventory[idx])
+	{
+		std::cerr << _name << " cannot use item " << idx << std::endl;
 		return ;
+	}
 	inventory[idx]->use(target);
 }

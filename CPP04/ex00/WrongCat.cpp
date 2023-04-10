@@ -3,13 +3,13 @@
 WrongCat::WrongCat(void)
 {
 	setType("WrongCat");
-	std::cout << "A cat has been constructed" << std::endl;
+	std::cout << "A wrong cat has been constructed" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &a)
 {
 	setType(a.getType());
-	std::cout << "A cat has been constructed by copy" << std::endl;
+	std::cout << "A wrong cat has been constructed by copy" << std::endl;
 }
 
 WrongCat	&WrongCat::operator = (const WrongCat &a)
@@ -21,7 +21,7 @@ WrongCat	&WrongCat::operator = (const WrongCat &a)
 
 WrongCat::~WrongCat(void)
 {
-	std::cout << "A cat has been destroyed" << std::endl;
+	std::cout << "A wrong cat has been destroyed" << std::endl;
 }
 
 void	WrongCat::makeSound(void) const

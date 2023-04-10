@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:41:29 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/08 21:23:25 by odessein         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:51:16 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int	Span::shortestSpan(void)
 	max_val = *it;
 	if (filled <= 1)
 		throw (Exception_not_enough());
+	buff = max_val;
 	for (it = arr.begin(); it != arr.end(); ++it)
 	{
 		same = false;
-		buff = max_val;
 		for (it2 = arr.begin(); it2 != arr.end(); ++it2)
 		{
 			if (*it == *it2)

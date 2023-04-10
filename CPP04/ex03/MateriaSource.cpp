@@ -17,7 +17,12 @@ MateriaSource::MateriaSource(const MateriaSource &a)
 MateriaSource &MateriaSource::operator = (const MateriaSource &a)
 {
 	for (int i = 0; i < 4; i++)
-		learnedMaterial[i] = a.learnedMaterial[i];
+	{
+		if (learnedMaterial[i])
+			delete learnedMaterial[i];
+	}
+	for (int i = 0; i < 4; i++)
+		learnedMaterial[i] = a.learnedMaterial[i]->clone();
 	return (*this);
 }
 
