@@ -6,7 +6,7 @@
 /*   By: odessein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:00:13 by odessein          #+#    #+#             */
-/*   Updated: 2023/03/07 13:23:19 by odessein         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:32:52 by odessein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ typedef struct s_data{
 
 class Serializer
 {
-	public:
+	private:
 		Serializer(void);
+	public:
 		Serializer(Serializer const &rhs);
 
 		~Serializer(void);

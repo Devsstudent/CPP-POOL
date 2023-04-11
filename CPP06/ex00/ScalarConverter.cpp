@@ -176,7 +176,7 @@ void	toFloat(const std::string name)
 	if (is_int(name) || is_float(name) || is_double(name))
 		std::cout << static_cast<float>(atof(name.c_str())) << "f"  << std::endl;
 	else if (is_char(name))
-		std::cout << static_cast<float>(name.c_str()[0]) << std::endl;
+		std::cout << static_cast<float>(name.c_str()[0]) << "f" << std::endl;
 	else if (is_p_inf(name))
 		std::cout << "+" << std::numeric_limits<float>::infinity() << std::endl;
 	else if (is_n_inf(name))
