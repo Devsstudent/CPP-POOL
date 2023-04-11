@@ -45,11 +45,11 @@ bool	check_date(std::string	date)
 		size++;
 	}
 	fill_arr(buff, date);
-	if (buff[0] < 0)
+	if (buff[0] < 0 || buff[0] < 2009 || (buff[0] == 2009 && (buff[1] < 1 || buff[2] < 2)))
 		return (false);
-	if (buff[1] > 12 || buff[1] < 0)
+	if (buff[1] > 12 || buff[1] <= 0)
 		return (false);
-	if (buff[2] > 31 || buff[2] < 0)
+	if (buff[2] > 31 || buff[2] <= 0)
 		return (false);
 	return (true);
 }
@@ -101,9 +101,7 @@ std::multimap<std::string, double>::iterator closest_date(std::string date, std:
 
 	std::multimap<std::string, double>::iterator it = db.begin();
 	std::multimap<std::string, double>::iterator ite = --db.end();
-	if (atoi(date.substr(0, 4).c_str()) < 2009 || (atoi(date.substr(0, 4).c_str()) == 2009 && atoi(date.substr(8).c_str()) < 2))
-		return it;
-	else if (atoi(date.substr(0, 4).c_str()) > 2022 || (atoi(date.substr(0, 4).c_str()) == 2022 && atoi(date.substr(5, 2).c_str()) > 3) || (atoi(date.substr(0, 4).c_str()) ==     2022 && atoi(date.substr(5, 2).c_str()) == 3 && atoi(date.substr(8).c_str()) > 29))
+	if (atoi(date.substr(0, 4).c_str()) > 2022 || (atoi(date.substr(0, 4).c_str()) == 2022 && atoi(date.substr(5, 2).c_str()) > 3) || (atoi(date.substr(0, 4).c_str()) ==     2022 && atoi(date.substr(5, 2).c_str()) == 3 && atoi(date.substr(8).c_str()) > 29))
 		return (--ite);
 	for (; it != db.end(); it++)
 	{
