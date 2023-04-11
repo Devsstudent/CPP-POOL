@@ -9,5 +9,7 @@ int	main(void)
 	test.content = "12";
 	buff = Serializer::serialize(&test);
 	buff2 = Serializer::deserialize(buff);
+	if (!buff2)
+		return 1;
 	std::cout << buff2->content << std::endl;
 }
