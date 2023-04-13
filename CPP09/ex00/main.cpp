@@ -122,7 +122,8 @@ int	main(int ac, char **av)
 		return (1);
 	std::multimap<std::string, double>	info;
 	std::ifstream	input;
-	input.open(av[1]); if (input.bad())
+	input.open(av[1]);
+	if (input.bad())
 	{
 		std::cerr << "Cannot open argument files" << std::endl;
 		return (2);
@@ -131,6 +132,14 @@ int	main(int ac, char **av)
 		return (3);
 	BitcoinExchange	bitcoin(info);
 	std::string	buffer;
+	if (std::getline(input, buffer))
+	{
+		if (buffer != "date | value")
+		{
+			std::cerr << "Wrong First Line" << std::endl;
+			return (2);
+		}
+	}
 	while (std::getline(input, buffer))
 		bitcoin.check_line(buffer);
 	//Call checkline on the inputfile 

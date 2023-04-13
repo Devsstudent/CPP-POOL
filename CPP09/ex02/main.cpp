@@ -33,7 +33,7 @@ static void	sort_by_deque(int ac, char **av)
 	}
 	//disp
 	sort_pair(queue);
-	std::sort(queue.begin(), queue.end());
+	merge_sort(queue, 0, queue.size() - 1);
 	std::deque<int> second_queue = createFromPair(queue);
 	binaryInsertSort(queue, second_queue);
 }
@@ -49,9 +49,15 @@ static void	sort_by_vect(int ac, char **av)
 	}
 
 	display_before(vec);
-
 	sort_pair(vec);
-	std::sort(vec.begin(), vec.end());
+	merge_sort(vec, 0, vec.size() - 1);
+/*
+	std::cout << "bruh" << std::endl;
+	for (std::vector<std::pair<int, int> >::iterator it = vec.begin(); it != vec.end(); it++)
+	{
+		std::cout << it->first << std::endl;
+	}
+	std::cout << "bruh 2" << std::endl;*/
 	std::vector<int> second_vec = createFromPair(vec);
 	binaryInsertSort(vec, second_vec);
 	display_after(vec);
